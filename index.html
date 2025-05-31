@@ -30,7 +30,7 @@
             --text-inverse: #ffffff;
             --success: #059669;
             --warning: #d97706;
-            --error: #dc2626;
+            --error: #dc2626; /* Red for "not for you" */
             
             /* Typography Scale */
             --text-xs: 0.75rem;
@@ -555,7 +555,7 @@
         }
 
         .fit-card.not-good h3 { 
-            color: var(--text-primary); 
+            color: var(--error); /* Changed to error color for "not for you" title */
         }
 
         .fit-list {
@@ -571,7 +571,7 @@
         }
 
         .good .fit-list li::before { 
-            content: "✓";
+            content: "✓"; /* Green check for "good for you" */
             position: absolute;
             left: 0;
             color: var(--success);
@@ -580,10 +580,10 @@
         }
 
         .not-good .fit-list li::before { 
-            content: "✓"; 
+            content: "✕"; /* Red X for "not good for you" */
             position: absolute;
             left: 0;
-            color: var(--text-tertiary); 
+            color: var(--error); 
             font-weight: 700;
             font-size: var(--text-lg);
         }
@@ -977,7 +977,6 @@
                     <div class="service-price">Free <small>for referrals | $25 new clients</small></div>
                     <a href="#contact" class="cta-btn" id="service1-cta">Experience This</a>
                 </div>
-
                 <div class="service-card">
                     <h3 id="service2-title">Strategy Session</h3>
                     <div class="service-duration" id="service2-duration">90 minutes + comprehensive analysis</div>
@@ -990,7 +989,6 @@
                     <div class="service-price">$295</div>
                     <a href="#contact" class="cta-btn secondary" id="service2-cta">Experience This</a>
                 </div>
-
                 <div class="service-card">
                     <h3 id="service3-title">Monthly Partnership</h3>
                     <div class="service-duration" id="service3-duration">30 days of regular check-ins</div>
@@ -1003,7 +1001,6 @@
                     <div class="service-price">$2,500</div>
                     <a href="#contact" class="cta-btn secondary" id="service3-cta">Experience This</a>
                 </div>
-
                 <div class="service-card">
                     <h3 id="service4-title">Ongoing Partnership</h3>
                     <div class="service-duration" id="service4-duration">Whatever timeline makes sense</div>
@@ -1058,7 +1055,7 @@
             </div>
             <div class="fit-grid">
                 <div class="fit-card good">
-                     <h3 id="fit-good-title">This is for you if...</h3>
+                     <h3 id="fit-good-title">This IS for you if...</h3>
                     <ul class="fit-list">
                         <li id="fit-good-1">You feel overwhelmed by operational tasks that seem harder than they should be</li>
                         <li id="fit-good-2">You handle day-to-day chaos but sense there's a simpler way</li>
@@ -1068,8 +1065,8 @@
                         <li id="fit-good-6">You're ready to see what AI-augmented thinking actually looks like</li>
                     </ul>
                 </div>
-                <div class="fit-card not-good"> <h3 id="fit-bad-title">This approach works well when...</h3>
-                    <ul class="fit-list">
+                <div class="fit-card not-good"> 
+                    <h3 id="fit-bad-title">This is NOT for you if...</h3> <ul class="fit-list">
                         <li id="fit-bad-1">You have well-established, sophisticated operational systems</li>
                         <li id="fit-bad-2">You prefer traditional consulting without an AI component</li>
                         <li id="fit-bad-3">You seek solutions without active participation in the thinking process</li>
@@ -1217,14 +1214,14 @@
                 processText2: "I'll help you see things in a new light. You'll experience how smart tools can help us think clearly together.",
                 processText3: "I'll share some simple ideas that might help, based on what we discover.",
                 processText4: "If you like, we can work together to make those ideas a reality in a way that feels good to you.",
-                fitGoodTitle: "This is for you if...",
+                fitGoodTitle: "This IS for you if...", // MODIFIED
                 fitGood1: "You feel swamped by daily tasks",
                 fitGood2: "You sense things could be easier, but you're unsure how",
                 fitGood3: "You want simple improvements that feel manageable",
                 fitGood4: "You like working with someone who explains things clearly",
                 fitGood5: "You're curious about new tools but want to keep it simple",
                 fitGood6: "You'd like a helper to think things through with you",
-                fitBadTitle: "This approach works well when...", 
+                fitBadTitle: "This is NOT for you if...", // MODIFIED
                 fitBad1: "You need large, corporate-style solutions",
                 fitBad2: "You are looking for complex software installations",
                 fitBad3: "You expect big changes without exploring together",
@@ -1289,14 +1286,14 @@
                 processText2: "Together we figure out what's working and what could work better, with AI helping us spot things we might miss.",
                 processText3: "I offer tailored guidance based on your specific context and goals, informed by both experience and smart analysis.",
                 processText4: "I stay with you through implementation, providing support and encouragement as you build confidence and find more ease.",
-                fitGoodTitle: "This is for you if...",
+                fitGoodTitle: "This IS for you if...", // MODIFIED
                 fitGood1: "You're looking for supportive guidance to navigate challenges",
                 fitGood2: "You manage operational tasks and seek a thoughtful partner",
                 fitGood3: "You value sustainable improvements over quick fixes",
                 fitGood4: "You want collaborative solutions tailored to your situation",
                 fitGood5: "You're ready to invest in meaningful, lasting positive change",
                 fitGood6: "You appreciate ongoing support through implementation",
-                fitBadTitle: "This approach works well when...",
+                fitBadTitle: "This is NOT for you if...", // MODIFIED
                 fitBad1: "You require large, enterprise-scale implementations",
                 fitBad2: "You are primarily seeking technology vendors or software sales",
                 fitBad3: "You expect instant transformation without collaboration",
@@ -1361,14 +1358,14 @@
                 processText2: "You'll see AI helping us break down complex problems into manageable pieces in real-time.",
                 processText3: "I'll demonstrate how AI reveals options you might have considered, explained in normal language.",
                 processText4: "If it makes sense, we'll create solutions together—with AI doing the complex thinking so you don't have to.",
-                fitGoodTitle: "This is for you if...",
+                fitGoodTitle: "This IS for you if...", // MODIFIED
                 fitGood1: "You feel overwhelmed by operational tasks that seem harder than they should be",
                 fitGood2: "You handle day-to-day chaos but sense there's a simpler way",
                 fitGood3: "You are curious about AI but want to keep things simple",
                 fitGood4: "You want someone to think through problems WITH you, offering a fresh perspective",
                 fitGood5: "You need effective systems, whatever your role or field",
                 fitGood6: "You're ready to see what AI-augmented thinking actually looks like",
-                fitBadTitle: "This approach works well when...",
+                fitBadTitle: "This is NOT for you if...", // MODIFIED
                 fitBad1: "You have well-established, sophisticated operational systems",
                 fitBad2: "You prefer traditional consulting without an AI component",
                 fitBad3: "You seek solutions without active participation in the thinking process",
@@ -1433,14 +1430,14 @@
                 processText2: "Figure out exactly where you can get better results using AI to spot what I'd miss on my own.",
                 processText3: "Use methods that work with clear goals and timelines, with AI helping us find the best approach.",
                 processText4: "Work with you to get it done, track what's working, and keep improving over time.",
-                fitGoodTitle: "This is for you if...",
+                fitGoodTitle: "This IS for you if...", // MODIFIED
                 fitGood1: "You are an experienced operator facing sophisticated challenges",
                 fitGood2: "You manage high-performing teams needing further optimization and leverage",
                 fitGood3: "You value tactical expertise and proven, results-driven solutions",
                 fitGood4: "You are ready to implement decisive actions for measurable improvements",
                 fitGood5: "You are committed to achieving and sustaining peak performance",
                 fitGood6: "You seek an execution partner to drive results, not just strategy",
-                fitBadTitle: "This approach works well when...",
+                fitBadTitle: "This is NOT for you if...", // MODIFIED
                 fitBad1: "You require basic operational guidance or introductory concepts",
                 fitBad2: "You are primarily looking for software sales or vendor relationships",
                 fitBad3: "You expect results without focused tactical implementation and commitment",
@@ -1468,7 +1465,7 @@
         function applyTone(toneName) {
             const content = toneContent[toneName];
             if (!content) {
-                console.warn("Tone not found:", toneName);
+                console.warn("Tone not found:", toneName, "Defaulting to 'straightforward'.");
                 applyTone('straightforward'); 
                 return;
             }
@@ -1523,7 +1520,7 @@
                 { id: 'fit-good-4', key: 'fitGood4' },
                 { id: 'fit-good-5', key: 'fitGood5' },
                 { id: 'fit-good-6', key: 'fitGood6' },
-                { id: 'fit-bad-title', key: 'fitBadTitle' },
+                { id: 'fit-bad-title', key: 'fitBadTitle' }, // This will be updated by the script
                 { id: 'fit-bad-1', key: 'fitBad1' },
                 { id: 'fit-bad-2', key: 'fitBad2' },
                 { id: 'fit-bad-3', key: 'fitBad3' },
@@ -1549,6 +1546,7 @@
             elementsToUpdate.forEach(({ id, key, isHTML, isQuestion, isAnswer }) => {
                 const element = document.getElementById(id);
                 if (element && content[key] !== undefined) {
+                    // Smooth transition effect
                     element.style.opacity = '0.6'; 
                     element.style.transform = 'translateY(4px)';
                     
@@ -1556,9 +1554,12 @@
                         if (isHTML) {
                             element.innerHTML = content[key];
                         } else if (isQuestion) {
+                            // Preserve the toggle span if it exists
+                            const toggleSpan = element.querySelector('.faq-toggle');
                             element.childNodes[0].nodeValue = content[key] + " "; 
+                            if(toggleSpan) element.appendChild(toggleSpan);
                         } else if (isAnswer) {
-                            element.textContent = content[key];
+                             element.querySelector('p') ? element.querySelector('p').textContent = content[key] : element.textContent = content[key];
                         }
                         else {
                             element.textContent = content[key];
@@ -1579,6 +1580,7 @@
             const SCROLL_THRESHOLD = 100; 
             let isMobile = window.innerWidth <= 768;
             
+            // Function to handle scroll behavior for the tone selector
             function handleScroll() {
                 if (isMobile) { 
                     toneSelector.classList.remove('minimized');
@@ -1595,6 +1597,7 @@
                 }
             }
 
+            // Function to check if the view is mobile and adjust tone selector
             function checkMobile() {
                 isMobile = window.innerWidth <= 768;
                 if (isMobile) {
@@ -1606,18 +1609,21 @@
                 }
             }
             
+            // Event listeners for scroll and resize
             window.addEventListener('scroll', handleScroll);
             window.addEventListener('resize', checkMobile);
             
+            // Set default tone and apply it
             const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
             document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active')); 
             if (defaultToneButton) {
                 defaultToneButton.classList.add('active');
-                applyTone('straightforward');
+                applyTone('straightforward'); // Apply the default tone
             }
             
-            checkMobile(); 
+            checkMobile(); // Initial check for mobile view
 
+            // Event listeners for tone buttons
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     toneButtons.forEach(b => b.classList.remove('active'));
@@ -1629,11 +1635,17 @@
                 });
             });
 
+            // FAQ accordion functionality
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     const faqItem = this.parentElement;
                     const wasActive = faqItem.classList.contains('active');
+                    
+                    // Optional: Close other active items if you want only one open at a time
+                    // document.querySelectorAll('.faq-item.active').forEach(item => {
+                    //     if (item !== faqItem) item.classList.remove('active');
+                    // });
                     
                     if (!wasActive) {
                         faqItem.classList.add('active');
@@ -1643,6 +1655,7 @@
                 });
             });
 
+            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -1651,8 +1664,9 @@
                         const targetElement = document.querySelector(href);
                         if (targetElement) {
                             let offsetTop = targetElement.offsetTop;
-                            if (!isMobile && toneSelector) { 
-                                offsetTop -= (toneSelector.offsetHeight + 10); 
+                            // Adjust for sticky header if not on mobile
+                            if (!isMobile && toneSelector && toneSelector.style.position === 'sticky') { 
+                                offsetTop -= (toneSelector.offsetHeight + 10); // Add a little extra padding
                             }
                             window.scrollTo({
                                 top: offsetTop,
