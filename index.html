@@ -15,7 +15,7 @@
 
         :root {
             /* Base Design System */
-            --primary: #2563eb;
+            --primary: #2563eb; /* Straightforward theme default */
             --primary-dark: #1d4ed8;
             --accent: #06b6d4;
             --accent-light: #22d3ee;
@@ -30,7 +30,7 @@
             --text-inverse: #ffffff;
             --success: #059669;
             --warning: #d97706;
-            --error: #dc2626; /* Red for "not for you" */
+            --error: #dc2626; 
             
             /* Typography Scale */
             --text-xs: 0.75rem;
@@ -126,12 +126,14 @@
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 100; 
+            z-index: 100; /* Tone selector bar is on top of everything */
             backdrop-filter: blur(8px); 
             transition: padding 0.3s ease, min-height 0.3s ease; 
             padding: var(--space-4) 0; 
             min-height: 60px; 
-            overflow: hidden; 
+        }
+        .tone-selector-content { 
+            position: relative; 
         }
         
         .tone-selector.minimized {
@@ -192,7 +194,7 @@
             cursor: pointer;
             font-size: var(--text-sm);
             font-weight: 500;
-            transition: var(--transition);
+            transition: var(--transition), opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
             text-align: center;
             min-width: 180px; 
             display: flex; 
@@ -210,8 +212,39 @@
         
         .tone-btn:hover {
             border-color: var(--primary);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-1px); 
+            box-shadow: var(--shadow-md); 
+        }
+
+        .tone-btn .emoji {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            font-size: 1.1em; 
+            line-height: 1; 
+        }
+        .tone-btn:hover .emoji {
+            transform: scale(1.25) translateY(-2px); 
+        }
+        .tone-selector.minimized .tone-btn .emoji {
+            font-size: 1.2em; 
+        }
+
+        .emoji.pulsing-animation {
+            animation: pulse-emoji 0.5s ease-in-out;
+        }
+        @keyframes pulse-emoji {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+        
+        .tone-btn.faded {
+            opacity: 0.6;
+            transform: scale(0.95);
+            box-shadow: none;
+        }
+        .tone-btn.faded:hover { 
+            border-color: var(--border);
+            transform: scale(0.95); 
+            box-shadow: none;
         }
 
         .tone-btn.active {
@@ -222,23 +255,53 @@
             transform: translateY(-2px);
         }
         
-        .tone-btn .emoji {
-            font-size: 1.1em; 
-            line-height: 1; 
-        }
-        .tone-selector.minimized .tone-btn .emoji {
-            font-size: 1.2em; 
-        }
         .tone-selector.minimized .tone-btn .tone-btn-text {
              display: none; 
         }
 
+        /* "Broadcast Wave" Styles */
+        .tone-wave {
+            position: fixed; 
+            width: 20px; 
+            height: 20px; 
+            background-color: var(--primary); 
+            border-radius: 50%;
+            transform: scale(0); 
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 70; /* ADJUSTED: Above content (60), below tone-selector (100) */
+            transition: background-color 0.3s ease; 
+        }
+
+        .tone-wave.broadcasting-animation { 
+            animation: broadcast-wave-fullscreen 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes broadcast-wave-fullscreen {
+            0% {
+                transform: scale(0.1); 
+                opacity: 0.6; 
+            }
+            100% {
+                transform: scale(200); 
+                opacity: 0; 
+            }
+        }
+        
+        /* Main Content Sections Z-indexing */
+        .hero, .section, .final-cta {
+            position: relative; 
+            z-index: 60; /* Ensures content is below wave (70) and tone-selector (100) */
+        }
+        
+        /* Hero Section Styles */
         .hero {
             background: var(--gradient-primary);
             color: var(--text-inverse);
-            position: relative;
-            overflow: hidden;
+            /* position: relative; /* Already set above */
+            overflow: hidden;   
             padding: var(--space-24) 0 var(--space-20);
+            /* z-index: 60; /* Already set above */
         }
         
         [data-theme="simple"] .hero,
@@ -255,6 +318,7 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
             animation: rotate 40s linear infinite;
+            z-index: -1; 
         }
 
         @keyframes rotate {
@@ -262,9 +326,9 @@
             to { transform: rotate(360deg); }
         }
 
-        .hero-content {
+        .hero-content { 
             position: relative;
-            z-index: 1;
+            z-index: 1; 
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
@@ -305,11 +369,11 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
-        .hero-info {
+        .hero-info { 
             margin-top: var(--space-8);
             display: flex;
             gap: var(--space-6);
-            justify-content: center;
+            justify-content: center; 
             flex-wrap: wrap;
         }
 
@@ -322,14 +386,17 @@
             font-weight: 500;
         }
 
+        /* General Section Styles */
         .section {
             padding: var(--space-20) 0;
+            /* position: relative; /* Already set above */
+            /* z-index: 60; /* Already set above */
         }
         .services { background: var(--surface-secondary); }
         .fit-section { background: var(--surface-secondary); }
         .faq { background: var(--surface-secondary); }
 
-        .section-header {
+        .section-header { 
             text-align: center;
             margin-bottom: var(--space-16);
             max-width: 700px;
@@ -554,7 +621,7 @@
         }
 
         .fit-card.not-good h3 { 
-            color: var(--error); /* Red for "not for you" title */
+            color: var(--error); 
         }
 
         .fit-list {
@@ -570,7 +637,7 @@
         }
 
         .good .fit-list li::before { 
-            content: "✓"; /* Green check for "good for you" */
+            content: "✓"; 
             position: absolute;
             left: 0;
             color: var(--success);
@@ -579,7 +646,7 @@
         }
 
         .not-good .fit-list li::before { 
-            content: "✕"; /* Red X for "not good for you" */
+            content: "✕"; 
             position: absolute;
             left: 0;
             color: var(--error); 
@@ -741,16 +808,17 @@
         .faq-item.active .faq-toggle { 
             transform: rotate(45deg);
         }
-
+       
+        /* Final CTA Styles */
         .final-cta {
             background: var(--gradient-primary);
             color: var(--text-inverse);
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            /* position: relative; /* Already set above */
+            overflow: hidden;   
             padding: var(--space-20) 0;
+            /* z-index: 60; /* Already set above */
         }
-        
         [data-theme="simple"] .final-cta,
         [data-theme="supportive"] .final-cta {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
@@ -765,11 +833,12 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
             animation: rotate 40s linear infinite reverse; 
+            z-index: -1; 
         }
 
-        .final-cta-content {
+        .final-cta-content { 
             position: relative;
-            z-index: 1;
+            z-index: 1; 
             max-width: 600px;
             margin: 0 auto;
         }
@@ -825,7 +894,7 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
         }
 
-        /* Mobile Responsive Adjustments */
+        /* Mobile Responsive Adjustments - Unchanged */
         @media (max-width: 768px) {
             .tone-selector {
                 background: var(--surface-secondary); 
@@ -917,28 +986,27 @@
 <body>
     <div class="tone-selector" id="toneSelector">
         <div class="container">
-            <div class="tone-selector-content">
+            <div class="tone-selector-content"> 
                 <div class="tone-question">
-                    <h3>How would you like me to communicate with you?</h3>
-                    <p>Choose the approach that feels right for where you are</p>
+                    <h3>Choose Your Approach.</h3>
+                    <p>This page will adapt to the option you select.</p>
                 </div>
                 <div class="tone-options">
                     <button class="tone-btn" data-theme="simple">
-                        <span class="emoji">🌱</span> <span class="tone-btn-text">Feeling Lost? Start Here</span>
+                        <span class="emoji">🌱</span> <span class="tone-btn-text">Start from scratch.</span>
                     </button>
                     <button class="tone-btn" data-theme="supportive">
-                        <span class="emoji">🤝</span> <span class="tone-btn-text">Need Gentle Guidance?</span>
+                        <span class="emoji">🤝</span> <span class="tone-btn-text">Guide me gently.</span>
                     </button>
-                    <button class="tone-btn active" data-theme="straightforward"> <span class="emoji">📊</span> <span class="tone-btn-text">Just the Facts, Please.</span>
+                    <button class="tone-btn active" data-theme="straightforward"> <span class="emoji">📊</span> <span class="tone-btn-text">Just the facts.</span>
                     </button>
                     <button class="tone-btn" data-theme="tactical">
-                        <span class="emoji">🚀</span> <span class="tone-btn-text">Been Around the Block?</span>
+                        <span class="emoji">🚀</span> <span class="tone-btn-text">Let's get tactical.</span>
                     </button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -971,7 +1039,7 @@
                         <li>Written insights within 24 hours</li>
                     </ul>
                     <div class="service-price">Free <small>for referrals | $25 new clients</small></div>
-                    <a href="#contact" class="cta-btn" id="service1-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=discovery-session" class="cta-btn" id="service1-cta">Experience This</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service2-title">Strategy Session</h3>
@@ -983,7 +1051,7 @@
                         <li>Next steps you can actually implement</li>
                     </ul>
                     <div class="service-price">$295</div>
-                    <a href="#contact" class="cta-btn secondary" id="service2-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=strategy-session" class="cta-btn secondary" id="service2-cta">Experience This</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service3-title">Monthly Partnership</h3>
@@ -995,7 +1063,7 @@
                         <li>Learn to spot when AI could help</li>
                     </ul>
                     <div class="service-price">$2,500</div>
-                    <a href="#contact" class="cta-btn secondary" id="service3-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=monthly-partnership" class="cta-btn secondary" id="service3-cta">Experience This</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service4-title">Ongoing Partnership</h3>
@@ -1007,7 +1075,7 @@
                         <li>Long-term partnership as your needs evolve</li>
                     </ul>
                     <div class="service-price">Custom arrangement</div>
-                    <a href="#contact" class="cta-btn secondary" id="service4-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=ongoing-partnership" class="cta-btn secondary" id="service4-cta">Experience This</a>
                 </div>
             </div>
         </div>
@@ -1165,10 +1233,12 @@
         </div>
     </section>
 
+    <div class="tone-wave"></div> 
+
     <script>
         // Tone content variations
         const toneContent = {
-            simple: { // 🌱 Feeling Lost? Start Here
+            simple: { // 🌱 Start from scratch.
                 headline: "A Simpler Way to Work.",
                 subheadline: "When work feels overwhelming, I help you find clarity and make your tasks easier.",
                 heroCta: "Let's Talk",
@@ -1240,7 +1310,7 @@
                 ctaPrimary: "Let's Talk",
                 ctaSecondary: "Send a Message"
             },
-            supportive: { // 🤝 Need Gentle Guidance?
+            supportive: { // 🤝 Guide me gently.
                 headline: "Your Partner in Finding Clarity.",
                 subheadline: "When you feel stuck or unsure what to tackle first, I'm here to help you with your work problems and feel more confident.", 
                 heroCta: "Let's Explore Together",
@@ -1312,7 +1382,7 @@
                 ctaPrimary: "Book a Session",
                 ctaSecondary: "Send Your Questions"
             },
-            straightforward: { // 📊 Just the Facts, Please. (DEFAULT)
+            straightforward: { // 📊 Just the facts.
                 headline: "A Clearer Way to Manage Your Work.",
                 subheadline: "I help you figure out your work problems using AI as a thinking tool.",
                 heroCta: "Let's Figure This Out",
@@ -1384,7 +1454,7 @@
                 ctaPrimary: "Let's Think This Through",
                 ctaSecondary: "Send Me Your Situation"
             },
-            tactical: { // 🚀 Been Around the Block?
+            tactical: { // 🚀 Let's get tactical.
                 headline: "AI-Powered Operations Help.",
                 subheadline: "I help experienced operators get better results using AI-enhanced methods that actually work.",
                 heroCta: "Schedule Strategic Review",
@@ -1460,10 +1530,15 @@
 
         // Apply tone function with smooth animations
         function applyTone(toneName) {
+            document.documentElement.setAttribute('data-theme', toneName);
+
             const content = toneContent[toneName];
             if (!content) {
                 console.warn("Tone not found:", toneName, "Defaulting to 'straightforward'.");
-                applyTone('straightforward'); 
+                const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
+                if (defaultToneButton) {
+                    defaultToneButton.click(); 
+                }
                 return;
             }
 
@@ -1543,7 +1618,6 @@
             elementsToUpdate.forEach(({ id, key, isHTML, isQuestion, isAnswer }) => {
                 const element = document.getElementById(id);
                 if (element && content[key] !== undefined) {
-                    // Smooth transition effect
                     element.style.opacity = '0.6'; 
                     element.style.transform = 'translateY(4px)';
                     
@@ -1551,7 +1625,6 @@
                         if (isHTML) {
                             element.innerHTML = content[key];
                         } else if (isQuestion) {
-                            // Preserve the toggle span if it exists
                             const toggleSpan = element.querySelector('.faq-toggle');
                             element.childNodes[0].nodeValue = content[key] + " "; 
                             if(toggleSpan) element.appendChild(toggleSpan);
@@ -1568,22 +1641,22 @@
                     // console.warn(`Content key "${key}" not found for element ID "${id}" in tone "${toneName}". Element will not be updated.`);
                 }
             });
-            document.documentElement.setAttribute('data-theme', toneName);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const toneSelector = document.getElementById('toneSelector');
+            const toneSelectorBar = document.getElementById('toneSelector'); 
             const toneButtons = document.querySelectorAll('.tone-btn');
+            const waveElement = document.querySelector('.tone-wave'); 
             const SCROLL_THRESHOLD = 100; 
             
             function handleScroll() {
                 if (window.scrollY > SCROLL_THRESHOLD) {
-                    if (!toneSelector.classList.contains('minimized')) {
-                        toneSelector.classList.add('minimized');
+                    if (!toneSelectorBar.classList.contains('minimized')) {
+                        toneSelectorBar.classList.add('minimized');
                     }
                 } else {
-                    if (toneSelector.classList.contains('minimized')) {
-                        toneSelector.classList.remove('minimized');
+                    if (toneSelectorBar.classList.contains('minimized')) {
+                        toneSelectorBar.classList.remove('minimized');
                     }
                 }
             }
@@ -1591,7 +1664,6 @@
             window.addEventListener('scroll', handleScroll);
             
             const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
-            document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active')); 
             if (defaultToneButton) {
                 defaultToneButton.classList.add('active');
                 applyTone('straightforward'); 
@@ -1599,11 +1671,45 @@
 
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    toneButtons.forEach(b => b.classList.remove('active'));
+                    // Update active/faded states for buttons
+                    toneButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.remove('faded'); 
+                    });
                     this.classList.add('active');
+                    toneButtons.forEach(otherBtn => {
+                        if (otherBtn !== this) {
+                            otherBtn.classList.add('faded');
+                        }
+                    });
+
+                    // Emoji pulse animation
+                    const emoji = this.querySelector('.emoji');
+                    if (emoji) {
+                        emoji.classList.add('pulsing-animation');
+                        setTimeout(() => emoji.classList.remove('pulsing-animation'), 500); 
+                    }
+
+                    // Apply new textual tone to the page
                     const tone = this.dataset.theme;
                     if (tone) {
-                        applyTone(tone);
+                        applyTone(tone); 
+                    }
+                    
+                    // Position and trigger broadcast wave animation
+                    if (waveElement && toneSelectorBar) {
+                        const rect = toneSelectorBar.getBoundingClientRect(); 
+                        const waveInitialSize = parseFloat(getComputedStyle(waveElement).width); 
+
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+
+                        waveElement.style.top = (centerY - waveInitialSize / 2) + 'px';
+                        waveElement.style.left = (centerX - waveInitialSize / 2) + 'px';
+                        
+                        waveElement.classList.remove('broadcasting-animation'); 
+                        void waveElement.offsetWidth; // Force reflow
+                        waveElement.classList.add('broadcasting-animation');
                     }
                 });
             });
@@ -1612,13 +1718,7 @@
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     const faqItem = this.parentElement;
-                    const wasActive = faqItem.classList.contains('active');
-                    
-                    if (!wasActive) {
-                        faqItem.classList.add('active');
-                    } else {
-                        faqItem.classList.remove('active'); 
-                    }
+                    faqItem.classList.toggle('active'); 
                 });
             });
 
@@ -1630,8 +1730,9 @@
                         const targetElement = document.querySelector(href);
                         if (targetElement) {
                             let offsetTop = targetElement.offsetTop;
-                            if (toneSelector && toneSelector.style.position === 'sticky') { 
-                                offsetTop -= (toneSelector.offsetHeight + 10); 
+                            const tsBar = document.getElementById('toneSelector');
+                            if (tsBar && getComputedStyle(tsBar).position === 'sticky') { 
+                                offsetTop -= (tsBar.offsetHeight + 10); 
                             }
                             window.scrollTo({
                                 top: offsetTop,
