@@ -1,1 +1,0 @@
-# derek-yellin-consulting
