@@ -329,7 +329,6 @@
         .fit-section { background: var(--surface-secondary); }
         .faq { background: var(--surface-secondary); }
 
-
         .section-header {
             text-align: center;
             margin-bottom: var(--space-16);
@@ -829,24 +828,9 @@
         /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
             .tone-selector {
-                position: static; 
-                backdrop-filter: none; 
                 background: var(--surface-secondary); 
                 padding: var(--space-4) 0; 
             }
-            .tone-selector.minimized .tone-question {
-                 opacity: 1;
-                 max-height: 100px; 
-                 margin-bottom: var(--space-4);
-            }
-            .tone-selector.minimized .tone-btn { 
-                padding: var(--space-2) var(--space-3); 
-                font-size: var(--text-xs); 
-            }
-            .tone-selector.minimized .tone-btn .tone-btn-text {
-                display: inline; 
-            }
-
 
             .container {
                 padding: 0 var(--space-4);
@@ -1432,12 +1416,12 @@
                 processText3: "Use methods that work with clear goals and timelines, with AI helping us find the best approach.",
                 processText4: "Work with you to get it done, track what's working, and keep improving over time.",
                 fitGoodTitle: "This IS for you if...",
-                fitGood1: "You're an experienced operator looking for a fresh, AI-enhanced perspective to overcome persistent operational bottlenecks.", // REVISED
-                fitGood2: "You lead a capable team and want to unlock new levels of efficiency or decision-making clarity through AI-augmented insights.", // REVISED
-                fitGood3: "You value practical, results-driven strategies and are open to how AI-augmented thinking can provide a tactical edge.", // REVISED
-                fitGood4: "You're ready to implement targeted actions, informed by AI-driven analysis, for measurable operational improvements.", // REVISED
-                fitGood5: "You're committed to elevating your operational performance by integrating smarter, AI-assisted methods.", // REVISED
-                fitGood6: "You seek a collaborative partner to help implement and refine AI-augmented processes for tangible results.", // REVISED
+                fitGood1: "You're an experienced operator looking for a fresh, AI-enhanced perspective to overcome persistent operational bottlenecks.",
+                fitGood2: "You lead a capable team and want to unlock new levels of efficiency or decision-making clarity through AI-augmented insights.",
+                fitGood3: "You value practical, results-driven strategies and are open to how AI-augmented thinking can provide a tactical edge.",
+                fitGood4: "You're ready to implement targeted actions, informed by AI-driven analysis, for measurable operational improvements.",
+                fitGood5: "You're committed to elevating your operational performance by integrating smarter, AI-assisted methods.",
+                fitGood6: "You seek a collaborative partner to help implement and refine AI-augmented processes for tangible results.",
                 fitBadTitle: "This is NOT for you if...",
                 fitBad1: "Your operations are already highly optimized with advanced, mature systems beyond the scope of a personalized AI-augmented thinking partner.",
                 fitBad2: "You're specifically seeking conventional consulting methodologies, excluding AI integration.",
@@ -1579,13 +1563,8 @@
             const toneSelector = document.getElementById('toneSelector');
             const toneButtons = document.querySelectorAll('.tone-btn');
             const SCROLL_THRESHOLD = 100; 
-            let isMobile = window.innerWidth <= 768;
             
             function handleScroll() {
-                if (isMobile) { 
-                    toneSelector.classList.remove('minimized');
-                    return;
-                }
                 if (window.scrollY > SCROLL_THRESHOLD) {
                     if (!toneSelector.classList.contains('minimized')) {
                         toneSelector.classList.add('minimized');
@@ -1596,29 +1575,15 @@
                     }
                 }
             }
-
-            function checkMobile() {
-                isMobile = window.innerWidth <= 768;
-                if (isMobile) {
-                    toneSelector.classList.remove('minimized'); 
-                    toneSelector.style.position = 'static'; 
-                } else {
-                    toneSelector.style.position = 'sticky'; 
-                    handleScroll(); 
-                }
-            }
             
             window.addEventListener('scroll', handleScroll);
-            window.addEventListener('resize', checkMobile);
             
             const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
             document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active')); 
             if (defaultToneButton) {
                 defaultToneButton.classList.add('active');
                 applyTone('straightforward'); 
-            }
-            
-            checkMobile(); 
+            } 
 
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1653,7 +1618,7 @@
                         const targetElement = document.querySelector(href);
                         if (targetElement) {
                             let offsetTop = targetElement.offsetTop;
-                            if (!isMobile && toneSelector && toneSelector.style.position === 'sticky') { 
+                            if (toneSelector && toneSelector.style.position === 'sticky') { 
                                 offsetTop -= (toneSelector.offsetHeight + 10); 
                             }
                             window.scrollTo({
