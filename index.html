@@ -175,7 +175,7 @@
             justify-content: center;
             align-items: center; 
             flex-wrap: wrap;
-            max-width: 100%; /* CHANGED: Was 800px, now uses full width of parent .container */
+            max-width: 100%;
             margin: 0 auto;
             transition: gap 0.3s ease;
         }
@@ -555,7 +555,7 @@
         }
 
         .fit-card.not-good h3 { 
-            color: var(--error); /* Changed to error color for "not for you" title */
+            color: var(--error); /* Red for "not for you" title */
         }
 
         .fit-list {
@@ -1066,7 +1066,8 @@
                     </ul>
                 </div>
                 <div class="fit-card not-good"> 
-                    <h3 id="fit-bad-title">This is NOT for you if...</h3> <ul class="fit-list">
+                    <h3 id="fit-bad-title">This is NOT for you if...</h3>
+                    <ul class="fit-list">
                         <li id="fit-bad-1">You have well-established, sophisticated operational systems</li>
                         <li id="fit-bad-2">You prefer traditional consulting without an AI component</li>
                         <li id="fit-bad-3">You seek solutions without active participation in the thinking process</li>
@@ -1169,7 +1170,7 @@
     </section>
 
     <script>
-        // Tone content variations - updated with clean messaging
+        // Tone content variations
         const toneContent = {
             simple: { // 🌱 Feeling Lost? Start Here
                 headline: "A Simpler Way to Work.",
@@ -1214,20 +1215,20 @@
                 processText2: "I'll help you see things in a new light. You'll experience how smart tools can help us think clearly together.",
                 processText3: "I'll share some simple ideas that might help, based on what we discover.",
                 processText4: "If you like, we can work together to make those ideas a reality in a way that feels good to you.",
-                fitGoodTitle: "This IS for you if...", // MODIFIED
+                fitGoodTitle: "This IS for you if...",
                 fitGood1: "You feel swamped by daily tasks",
                 fitGood2: "You sense things could be easier, but you're unsure how",
                 fitGood3: "You want simple improvements that feel manageable",
                 fitGood4: "You like working with someone who explains things clearly",
                 fitGood5: "You're curious about new tools but want to keep it simple",
                 fitGood6: "You'd like a helper to think things through with you",
-                fitBadTitle: "This is NOT for you if...", // MODIFIED
-                fitBad1: "You need large, corporate-style solutions",
-                fitBad2: "You are looking for complex software installations",
-                fitBad3: "You expect big changes without exploring together",
-                fitBad4: "You feel everything is already perfectly organized",
-                fitBad5: "Your main focus is finding the lowest-cost option",
-                fitBad6: "You prefer to avoid any new tools or approaches",
+                fitBadTitle: "This is NOT for you if...", 
+                fitBad1: "Your work is already super organized and runs smoothly with fancy systems.",
+                fitBad2: "You'd rather not use new computer tools or AI helpers.",
+                fitBad3: "You want someone to just give you the answers without talking it through.",
+                fitBad4: "You're part of a very big company needing huge changes everywhere.",
+                fitBad5: "You really don't want any ideas that come from AI or smart tools.",
+                fitBad6: "Everything at work is already easy and you have no problems.",
                 aboutTitle: "My Focus: Your Peace of Mind",
                 faqTitle: "Your Questions Answered",
                 faq1Question: "How will I know if this can help me?",
@@ -1286,20 +1287,20 @@
                 processText2: "Together we figure out what's working and what could work better, with AI helping us spot things we might miss.",
                 processText3: "I offer tailored guidance based on your specific context and goals, informed by both experience and smart analysis.",
                 processText4: "I stay with you through implementation, providing support and encouragement as you build confidence and find more ease.",
-                fitGoodTitle: "This IS for you if...", // MODIFIED
+                fitGoodTitle: "This IS for you if...",
                 fitGood1: "You're looking for supportive guidance to navigate challenges",
                 fitGood2: "You manage operational tasks and seek a thoughtful partner",
                 fitGood3: "You value sustainable improvements over quick fixes",
                 fitGood4: "You want collaborative solutions tailored to your situation",
                 fitGood5: "You're ready to invest in meaningful, lasting positive change",
                 fitGood6: "You appreciate ongoing support through implementation",
-                fitBadTitle: "This is NOT for you if...", // MODIFIED
-                fitBad1: "You require large, enterprise-scale implementations",
-                fitBad2: "You are primarily seeking technology vendors or software sales",
-                fitBad3: "You expect instant transformation without collaboration",
-                fitBad4: "Your operations are already optimized to your full satisfaction",
-                fitBad5: "Your main criteria is the lowest possible cost",
-                fitBad6: "You prefer purely hands-off consulting relationships",
+                fitBadTitle: "This is NOT for you if...",
+                fitBad1: "You've already developed highly effective and complex systems that serve you well.",
+                fitBad2: "You're more comfortable with traditional consulting methods and prefer to avoid AI.",
+                fitBad3: "You're looking for a consultant to provide solutions independently, rather than a collaborative thinking partner.",
+                fitBad4: "Your primary need is for extensive, large-scale changes across a large organization.",
+                fitBad5: "You have a strong preference against incorporating AI-driven insights into your process.",
+                fitBad6: "You feel your current ways of working are fully meeting your needs and you're not seeking improvements.",
                 aboutTitle: "About Your Guide",
                 faqTitle: "Questions You Might Have",
                 faq1Question: "How will we know if we're a good fit?",
@@ -1358,20 +1359,20 @@
                 processText2: "You'll see AI helping us break down complex problems into manageable pieces in real-time.",
                 processText3: "I'll demonstrate how AI reveals options you might have considered, explained in normal language.",
                 processText4: "If it makes sense, we'll create solutions together—with AI doing the complex thinking so you don't have to.",
-                fitGoodTitle: "This IS for you if...", // MODIFIED
+                fitGoodTitle: "This IS for you if...",
                 fitGood1: "You feel overwhelmed by operational tasks that seem harder than they should be",
                 fitGood2: "You handle day-to-day chaos but sense there's a simpler way",
                 fitGood3: "You are curious about AI but want to keep things simple",
                 fitGood4: "You want someone to think through problems WITH you, offering a fresh perspective",
                 fitGood5: "You need effective systems, whatever your role or field",
                 fitGood6: "You're ready to see what AI-augmented thinking actually looks like",
-                fitBadTitle: "This is NOT for you if...", // MODIFIED
-                fitBad1: "You have well-established, sophisticated operational systems",
-                fitBad2: "You prefer traditional consulting without an AI component",
-                fitBad3: "You seek solutions without active participation in the thinking process",
-                fitBad4: "Your needs are primarily for large, enterprise-level implementations",
-                fitBad5: "You are looking to avoid AI insights entirely",
-                fitBad6: "Your current organization and systems meet all your needs",
+                fitBadTitle: "This is NOT for you if...", 
+                fitBad1: "You have well-established, sophisticated operational systems.",
+                fitBad2: "You prefer traditional consulting without an AI component.",
+                fitBad3: "You seek solutions without active participation in the thinking process.",
+                fitBad4: "Your needs are primarily for large, enterprise-level implementations.",
+                fitBad5: "You are looking to avoid AI insights entirely.",
+                fitBad6: "Your current organization and systems meet all your needs.",
                 aboutTitle: "About This AI-Augmented Approach",
                 faqTitle: "Common Questions",
                 faq1Question: "How do I know if this AI approach will actually help me?",
@@ -1430,28 +1431,28 @@
                 processText2: "Figure out exactly where you can get better results using AI to spot what I'd miss on my own.",
                 processText3: "Use methods that work with clear goals and timelines, with AI helping us find the best approach.",
                 processText4: "Work with you to get it done, track what's working, and keep improving over time.",
-                fitGoodTitle: "This IS for you if...", // MODIFIED
-                fitGood1: "You are an experienced operator facing sophisticated challenges",
-                fitGood2: "You manage high-performing teams needing further optimization and leverage",
-                fitGood3: "You value tactical expertise and proven, results-driven solutions",
-                fitGood4: "You are ready to implement decisive actions for measurable improvements",
-                fitGood5: "You are committed to achieving and sustaining peak performance",
-                fitGood6: "You seek an execution partner to drive results, not just strategy",
-                fitBadTitle: "This is NOT for you if...", // MODIFIED
-                fitBad1: "You require basic operational guidance or introductory concepts",
-                fitBad2: "You are primarily looking for software sales or vendor relationships",
-                fitBad3: "You expect results without focused tactical implementation and commitment",
-                fitBad4: "Your operations are already performing at absolute peak efficiency",
-                fitBad5: "You are hesitant to invest in proven, high-impact methodologies",
-                fitBad6: "You prefer theoretical approaches over practical, hands-on execution",
+                fitGoodTitle: "This IS for you if...",
+                fitGood1: "You're an experienced operator looking for a fresh, AI-enhanced perspective to overcome persistent operational bottlenecks.", // REVISED
+                fitGood2: "You lead a capable team and want to unlock new levels of efficiency or decision-making clarity through AI-augmented insights.", // REVISED
+                fitGood3: "You value practical, results-driven strategies and are open to how AI-augmented thinking can provide a tactical edge.", // REVISED
+                fitGood4: "You're ready to implement targeted actions, informed by AI-driven analysis, for measurable operational improvements.", // REVISED
+                fitGood5: "You're committed to elevating your operational performance by integrating smarter, AI-assisted methods.", // REVISED
+                fitGood6: "You seek a collaborative partner to help implement and refine AI-augmented processes for tangible results.", // REVISED
+                fitBadTitle: "This is NOT for you if...",
+                fitBad1: "Your operations are already highly optimized with advanced, mature systems beyond the scope of a personalized AI-augmented thinking partner.",
+                fitBad2: "You're specifically seeking conventional consulting methodologies, excluding AI integration.",
+                fitBad3: "You require a turnkey solution delivered, rather than engaging in a co-creative problem-solving process.",
+                fitBad4: "Your scope involves enterprise-wide transformations requiring extensive resource deployment and large-scale system overhauls.",
+                fitBad5: "You've made a strategic decision to exclude AI-generated intelligence from your operational toolkit.",
+                fitBad6: "Your current operational framework is already achieving all desired outcomes and efficiencies without the need for an external AI-augmented perspective.",
                 aboutTitle: "Experience & Results",
                 faqTitle: "Key Questions for Experienced Operators",
                 faq1Question: "How do you determine if we're a strategic fit?",
                 faq1Answer: "An initial assessment determines fit based on your operational sophistication, performance goals, and readiness for tactical action. You'll see how I use AI to enhance strategic and tactical analysis.",
                 faq2Question: "Who benefits most from your tactical approach?",
-                faq2Answer: "I work with experienced operators, leaders, and teams who want tactical expertise to maximize their operational potential, overcome plateaus, and scale effectively.",
+                faq2Answer: "I work with experienced operators, leaders, and teams who want tactical expertise to maximize their operational potential, overcome plateaus, and scale effectively by integrating AI-augmented thinking.",
                 faq3Question: "What's your stance on specific tools or technical skills?",
-                faq3Answer: "I deploy whatever tools and methods drive results—sometimes AI, always practical and proven. Your team's existing skills are leveraged; the focus is on outcomes.",
+                faq3Answer: "I deploy whatever tools and methods drive results—sometimes AI, always practical and proven. Your team's existing skills are leveraged; the focus is on outcomes achieved through smarter processes, not complex tech implementations.",
                 faq4Question: "What kind of results timeline can be expected?",
                 faq4Answer: "You'll see better results as we work together, with improvements that build over time.",
                 ctaHeadline: "Maximize Your Performance Today.", 
@@ -1520,7 +1521,7 @@
                 { id: 'fit-good-4', key: 'fitGood4' },
                 { id: 'fit-good-5', key: 'fitGood5' },
                 { id: 'fit-good-6', key: 'fitGood6' },
-                { id: 'fit-bad-title', key: 'fitBadTitle' }, // This will be updated by the script
+                { id: 'fit-bad-title', key: 'fitBadTitle' }, 
                 { id: 'fit-bad-1', key: 'fitBad1' },
                 { id: 'fit-bad-2', key: 'fitBad2' },
                 { id: 'fit-bad-3', key: 'fitBad3' },
@@ -1580,7 +1581,6 @@
             const SCROLL_THRESHOLD = 100; 
             let isMobile = window.innerWidth <= 768;
             
-            // Function to handle scroll behavior for the tone selector
             function handleScroll() {
                 if (isMobile) { 
                     toneSelector.classList.remove('minimized');
@@ -1597,7 +1597,6 @@
                 }
             }
 
-            // Function to check if the view is mobile and adjust tone selector
             function checkMobile() {
                 isMobile = window.innerWidth <= 768;
                 if (isMobile) {
@@ -1609,21 +1608,18 @@
                 }
             }
             
-            // Event listeners for scroll and resize
             window.addEventListener('scroll', handleScroll);
             window.addEventListener('resize', checkMobile);
             
-            // Set default tone and apply it
             const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
             document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active')); 
             if (defaultToneButton) {
                 defaultToneButton.classList.add('active');
-                applyTone('straightforward'); // Apply the default tone
+                applyTone('straightforward'); 
             }
             
-            checkMobile(); // Initial check for mobile view
+            checkMobile(); 
 
-            // Event listeners for tone buttons
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     toneButtons.forEach(b => b.classList.remove('active'));
@@ -1635,17 +1631,11 @@
                 });
             });
 
-            // FAQ accordion functionality
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     const faqItem = this.parentElement;
                     const wasActive = faqItem.classList.contains('active');
-                    
-                    // Optional: Close other active items if you want only one open at a time
-                    // document.querySelectorAll('.faq-item.active').forEach(item => {
-                    //     if (item !== faqItem) item.classList.remove('active');
-                    // });
                     
                     if (!wasActive) {
                         faqItem.classList.add('active');
@@ -1655,7 +1645,6 @@
                 });
             });
 
-            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -1664,9 +1653,8 @@
                         const targetElement = document.querySelector(href);
                         if (targetElement) {
                             let offsetTop = targetElement.offsetTop;
-                            // Adjust for sticky header if not on mobile
                             if (!isMobile && toneSelector && toneSelector.style.position === 'sticky') { 
-                                offsetTop -= (toneSelector.offsetHeight + 10); // Add a little extra padding
+                                offsetTop -= (toneSelector.offsetHeight + 10); 
                             }
                             window.scrollTo({
                                 top: offsetTop,
