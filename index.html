@@ -831,6 +831,18 @@
                 background: var(--surface-secondary); 
                 padding: var(--space-4) 0; 
             }
+            
+            .tone-selector.minimized .tone-btn { 
+                padding: var(--space-2) var(--space-3); 
+                font-size: var(--text-xs); 
+                min-width: auto;
+                flex-basis: auto;
+                flex-grow: 0;
+            }
+            
+            .tone-selector.minimized .tone-btn .tone-btn-text {
+                display: none; 
+            }
 
             .container {
                 padding: 0 var(--space-4);
