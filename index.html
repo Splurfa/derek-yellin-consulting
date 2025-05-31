@@ -73,38 +73,31 @@
             --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Theme Variations - Subtle palette shifts */
-        [data-theme="simple"] {
-            --primary: #059669;
+        /* Theme Variations */
+        [data-theme="simple"] { /* 🌱 */
+            --primary: #059669; 
             --primary-dark: #047857;
-            --accent: #06b6d4;
+            --accent: #06b6d4; 
         }
 
-        [data-theme="supportive"] {
-            --primary: #7c3aed;
+        [data-theme="supportive"] { /* 🤝 */
+            --primary: #7c3aed; 
             --primary-dark: #6d28d9;
-            --accent: #f59e0b;
+            --accent: #f59e0b; 
         }
 
-        [data-theme="straightforward"] {
-            --primary: #2563eb;
+        [data-theme="straightforward"] { /* 📊 */
+            --primary: #2563eb; 
             --primary-dark: #1d4ed8;
-            --accent: #06b6d4;
+            --accent: #06b6d4; 
         }
 
-        [data-theme="tactical"] {
-            --primary: #dc2626;
+        [data-theme="tactical"] { /* 🚀 */
+            --primary: #dc2626; 
             --primary-dark: #b91c1c;
-            --accent: #f59e0b;
+            --accent: #f59e0b; 
         }
 
-        [data-theme="technical"] {
-            --primary: #0891b2;
-            --primary-dark: #0e7490;
-            --accent: #059669;
-        }
-
-        /* Base Styles */
         html {
             scroll-behavior: smooth;
             font-size: 16px;
@@ -118,56 +111,57 @@
             font-feature-settings: 'cv11', 'ss01';
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            padding-top: 0; 
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--space-6);
         }
-
-        /* Typography System */
-        .text-xs { font-size: var(--text-xs); }
-        .text-sm { font-size: var(--text-sm); }
-        .text-base { font-size: var(--text-base); }
-        .text-lg { font-size: var(--text-lg); }
-        .text-xl { font-size: var(--text-xl); }
-        .text-2xl { font-size: var(--text-2xl); }
-        .text-3xl { font-size: var(--text-3xl); }
-        .text-4xl { font-size: var(--text-4xl); }
-        .text-5xl { font-size: var(--text-5xl); }
-        .text-6xl { font-size: var(--text-6xl); }
-
-        .font-medium { font-weight: 500; }
-        .font-semibold { font-weight: 600; }
-        .font-bold { font-weight: 700; }
-        .font-extrabold { font-weight: 800; }
-
-        /* Tone Selector */
+        
+        /* Tone Selector Styles */
         .tone-selector {
-            background: var(--surface-secondary);
+            background: rgba(248, 250, 252, 0.90); 
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 50;
-            backdrop-filter: blur(12px);
-            background: rgba(248, 250, 252, 0.8);
+            z-index: 100; 
+            backdrop-filter: blur(8px); 
+            transition: padding 0.3s ease, min-height 0.3s ease; 
+            padding: var(--space-4) 0; 
+            min-height: 60px; 
+            overflow: hidden; 
         }
-
-        .tone-selector-content {
-            padding: var(--space-6) 0;
+        
+        .tone-selector.minimized {
+            padding: var(--space-2) 0; 
+            min-height: 50px; 
         }
-
+        
         .tone-question {
             text-align: center;
-            margin-bottom: var(--space-5);
+            margin-bottom: var(--space-4); 
+            transition: opacity 0.2s ease-out, max-height 0.3s ease-out, margin-bottom 0.3s ease-out, visibility 0.3s ease-out;
+            overflow: hidden; 
+            max-height: 100px; 
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tone-selector.minimized .tone-question {
+            opacity: 0;
+            max-height: 0;
+            margin-bottom: 0;
+            visibility: hidden;
+            pointer-events: none; 
         }
 
         .tone-question h3 {
             font-size: var(--text-lg);
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1); 
         }
 
         .tone-question p {
@@ -177,15 +171,21 @@
 
         .tone-options {
             display: flex;
-            gap: var(--space-2);
+            gap: var(--space-3); 
             justify-content: center;
+            align-items: center; 
             flex-wrap: wrap;
-            max-width: 900px;
+            max-width: 100%; /* CHANGED: Was 800px, now uses full width of parent .container */
             margin: 0 auto;
+            transition: gap 0.3s ease;
+        }
+        
+        .tone-selector.minimized .tone-options {
+            gap: var(--space-2); 
         }
 
         .tone-btn {
-            padding: var(--space-3) var(--space-4);
+            padding: var(--space-2) var(--space-3); 
             border: 1.5px solid var(--border);
             background: var(--surface);
             border-radius: var(--space-3);
@@ -194,10 +194,20 @@
             font-weight: 500;
             transition: var(--transition);
             text-align: center;
-            min-width: 140px;
-            position: relative;
+            min-width: 180px; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2); 
+            box-shadow: var(--shadow-sm);
         }
-
+        
+        .tone-selector.minimized .tone-btn {
+            padding: var(--space-1) var(--space-2);
+            font-size: var(--text-xs); 
+            min-width: auto; 
+        }
+        
         .tone-btn:hover {
             border-color: var(--primary);
             transform: translateY(-1px);
@@ -211,8 +221,18 @@
             box-shadow: var(--shadow-lg);
             transform: translateY(-2px);
         }
+        
+        .tone-btn .emoji {
+            font-size: 1.1em; 
+            line-height: 1; 
+        }
+        .tone-selector.minimized .tone-btn .emoji {
+            font-size: 1.2em; 
+        }
+        .tone-selector.minimized .tone-btn .tone-btn-text {
+             display: none; 
+        }
 
-        /* Hero Section */
         .hero {
             background: var(--gradient-primary);
             color: var(--text-inverse);
@@ -220,15 +240,20 @@
             overflow: hidden;
             padding: var(--space-24) 0 var(--space-20);
         }
+        
+        [data-theme="simple"] .hero,
+        [data-theme="supportive"] .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
 
-        .hero::before {
+        .hero::before { 
             content: '';
             position: absolute;
             top: -50%;
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
             animation: rotate 40s linear infinite;
         }
 
@@ -268,7 +293,7 @@
             background: var(--surface);
             color: var(--primary);
             text-decoration: none;
-            border-radius: var(--space-4);
+            border-radius: var(--space-4); 
             font-weight: 600;
             font-size: var(--text-lg);
             transition: var(--transition-slow);
@@ -297,35 +322,13 @@
             font-weight: 500;
         }
 
-        /* Callout Component */
-        .callout {
-            background: var(--surface-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--space-3);
-            padding: var(--space-6);
-            margin: var(--space-8) 0;
-            position: relative;
-        }
-
-        .callout::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-            border-radius: var(--space-1);
-        }
-
-        .callout.accent::before {
-            background: var(--accent);
-        }
-
-        /* Section Styles */
         .section {
             padding: var(--space-20) 0;
         }
+        .services { background: var(--surface-secondary); }
+        .fit-section { background: var(--surface-secondary); }
+        .faq { background: var(--surface-secondary); }
+
 
         .section-header {
             text-align: center;
@@ -349,18 +352,13 @@
             color: var(--text-secondary);
             font-weight: 400;
         }
-
-        .subsection-title {
+        
+        .subsection-title { 
             font-size: var(--text-2xl);
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: var(--space-4);
             letter-spacing: -0.025em;
-        }
-
-        /* Services Grid */
-        .services {
-            background: var(--surface-secondary);
         }
 
         .services-grid {
@@ -372,14 +370,14 @@
         .service-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: var(--space-4);
+            border-radius: var(--space-4); 
             padding: var(--space-8);
             transition: var(--transition-slow);
             position: relative;
             overflow: hidden;
         }
 
-        .service-card::before {
+        .service-card::before { 
             content: '';
             position: absolute;
             top: 0;
@@ -389,6 +387,7 @@
             background: var(--gradient-primary);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            transform-origin: left;
         }
 
         .service-card:hover::before {
@@ -398,7 +397,6 @@
         .service-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-xl);
-            border-color: var(--border);
         }
 
         .service-card h3 {
@@ -430,7 +428,7 @@
             line-height: 1.6;
         }
 
-        .service-features li::before {
+        .service-features li::before { 
             content: "✓";
             position: absolute;
             left: 0;
@@ -452,7 +450,7 @@
             font-weight: 400;
         }
 
-        .cta-btn {
+        .cta-btn { 
             display: inline-flex;
             align-items: center;
             gap: var(--space-2);
@@ -460,7 +458,7 @@
             background: var(--gradient-primary);
             color: var(--text-inverse);
             text-decoration: none;
-            border-radius: var(--space-3);
+            border-radius: var(--space-3); 
             font-weight: 600;
             font-size: var(--text-base);
             transition: var(--transition);
@@ -472,16 +470,16 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .cta-btn.secondary {
+        .cta-btn.secondary { 
             background: var(--surface-tertiary);
             color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+         .cta-btn.secondary:hover {
+            background: var(--surface-secondary); 
+            box-shadow: var(--shadow-md);
         }
 
-        .cta-btn.secondary:hover {
-            background: var(--surface-secondary);
-        }
-
-        /* Process Section */
         .process-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -497,13 +495,14 @@
         .process-icon {
             width: 80px;
             height: 80px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
+            background: var(--gradient-primary); 
+            border-radius: 50%; 
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto var(--space-6);
-            font-size: var(--text-3xl);
+            font-size: var(--text-3xl); 
+            color: var(--text-inverse); 
             box-shadow: var(--shadow-lg);
             transition: var(--transition);
         }
@@ -525,14 +524,9 @@
             line-height: 1.6;
         }
 
-        /* Fit Section */
-        .fit-section {
-            background: var(--surface-secondary);
-        }
-
         .fit-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
             gap: var(--space-10);
             margin-top: var(--space-16);
         }
@@ -540,7 +534,7 @@
         .fit-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: var(--space-4);
+            border-radius: var(--space-4); 
             padding: var(--space-8);
             transition: var(--transition);
         }
@@ -550,18 +544,18 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .fit-card h3 {
+        .fit-card h3 { 
             font-size: var(--text-2xl);
             font-weight: 600;
             margin-bottom: var(--space-6);
         }
 
-        .fit-card.good h3 {
+        .fit-card.good h3 { 
             color: var(--success);
         }
 
-        .fit-card.not-good h3 {
-            color: var(--error);
+        .fit-card.not-good h3 { 
+            color: var(--text-primary); 
         }
 
         .fit-list {
@@ -576,7 +570,7 @@
             line-height: 1.6;
         }
 
-        .good .fit-list li::before {
+        .good .fit-list li::before { 
             content: "✓";
             position: absolute;
             left: 0;
@@ -585,16 +579,15 @@
             font-size: var(--text-lg);
         }
 
-        .not-good .fit-list li::before {
-            content: "✗";
+        .not-good .fit-list li::before { 
+            content: "✓"; 
             position: absolute;
             left: 0;
-            color: var(--error);
+            color: var(--text-tertiary); 
             font-weight: 700;
             font-size: var(--text-lg);
         }
-
-        /* About Section */
+        
         .about-content {
             max-width: 800px;
             margin: 0 auto;
@@ -607,38 +600,38 @@
             justify-content: center;
             gap: var(--space-6);
             margin-bottom: var(--space-10);
-            flex-wrap: wrap;
+            flex-wrap: wrap; 
         }
 
         .profile-image {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: var(--gradient-primary);
+            background: var(--gradient-primary); 
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-inverse);
             font-size: var(--text-3xl);
             font-weight: 700;
-            overflow: hidden;
+            overflow: hidden; 
             box-shadow: var(--shadow-lg);
         }
 
         .profile-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; 
         }
 
-        .profile-info h3 {
+        .profile-info h3 { 
             font-size: var(--text-3xl);
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: var(--space-2);
         }
 
-        .profile-info .title {
+        .profile-info .title { 
             font-size: var(--text-lg);
             color: var(--text-secondary);
             margin-bottom: var(--space-3);
@@ -659,7 +652,7 @@
             margin: var(--space-8) 0;
         }
 
-        .credentials {
+        .credentials { 
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--space-6);
@@ -669,14 +662,14 @@
         .credential {
             background: var(--surface-secondary);
             border: 1px solid var(--border-light);
-            border-radius: var(--space-3);
+            border-radius: var(--space-3); 
             padding: var(--space-6);
             text-align: center;
             transition: var(--transition);
         }
 
-        .credential::before {
-            content: "✓";
+        .credential::before { 
+            content: "✓"; 
             display: block;
             color: var(--accent);
             font-size: var(--text-2xl);
@@ -689,11 +682,6 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* FAQ Section */
-        .faq {
-            background: var(--surface-secondary);
-        }
-
         .faq-list {
             max-width: 800px;
             margin: 0 auto;
@@ -703,9 +691,9 @@
         .faq-item {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: var(--space-3);
+            border-radius: var(--space-3); 
             margin-bottom: var(--space-4);
-            overflow: hidden;
+            overflow: hidden; 
             transition: var(--transition);
         }
 
@@ -729,14 +717,14 @@
 
         .faq-answer {
             padding: 0 var(--space-6);
-            max-height: 0;
+            max-height: 0; 
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; 
         }
 
-        .faq-item.active .faq-answer {
+        .faq-item.active .faq-answer { 
             padding: 0 var(--space-6) var(--space-6);
-            max-height: 200px;
+            max-height: 300px; 
         }
 
         .faq-answer p {
@@ -744,18 +732,17 @@
             line-height: 1.7;
         }
 
-        .faq-toggle {
+        .faq-toggle { 
             font-size: var(--text-xl);
             color: var(--primary);
             transition: transform 0.3s ease;
             font-weight: 400;
         }
 
-        .faq-item.active .faq-toggle {
+        .faq-item.active .faq-toggle { 
             transform: rotate(45deg);
         }
 
-        /* Final CTA */
         .final-cta {
             background: var(--gradient-primary);
             color: var(--text-inverse);
@@ -764,16 +751,21 @@
             overflow: hidden;
             padding: var(--space-20) 0;
         }
+        
+        [data-theme="simple"] .final-cta,
+        [data-theme="supportive"] .final-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
 
-        .final-cta::before {
+        .final-cta::before { 
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: rotate 40s linear infinite reverse;
+            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
+            animation: rotate 40s linear infinite reverse; 
         }
 
         .final-cta-content {
@@ -796,18 +788,18 @@
             opacity: 0.95;
         }
 
-        .cta-buttons {
+        .cta-buttons { 
             display: flex;
             gap: var(--space-6);
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-primary,
-        .cta-secondary {
+        .cta-primary, 
+        .cta-secondary { 
             padding: var(--space-4) var(--space-8);
             text-decoration: none;
-            border-radius: var(--space-4);
+            border-radius: var(--space-4); 
             font-weight: 600;
             font-size: var(--text-lg);
             transition: var(--transition-slow);
@@ -831,19 +823,35 @@
         .cta-primary:hover,
         .cta-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
+            .tone-selector {
+                position: static; 
+                backdrop-filter: none; 
+                background: var(--surface-secondary); 
+                padding: var(--space-4) 0; 
+            }
+            .tone-selector.minimized .tone-question {
+                 opacity: 1;
+                 max-height: 100px; 
+                 margin-bottom: var(--space-4);
+            }
+            .tone-selector.minimized .tone-btn { 
+                padding: var(--space-2) var(--space-3); 
+                font-size: var(--text-xs); 
+            }
+            .tone-selector.minimized .tone-btn .tone-btn-text {
+                display: inline; 
+            }
+
+
             .container {
                 padding: 0 var(--space-4);
             }
-
-            .tone-selector-content {
-                padding: var(--space-4) 0;
-            }
-
+            
             .tone-options {
                 gap: var(--space-2);
             }
@@ -851,7 +859,7 @@
             .tone-btn {
                 padding: var(--space-2) var(--space-3);
                 font-size: var(--text-xs);
-                min-width: 120px;
+                min-width: 150px; 
             }
 
             .hero {
@@ -867,30 +875,32 @@
             }
 
             .services-grid,
-            .fit-grid {
-                grid-template-columns: 1fr;
+            .fit-grid,
+            .process-grid, 
+            .credentials { 
+                grid-template-columns: 1fr; 
                 gap: var(--space-6);
             }
 
-            .fit-grid {
-                grid-template-columns: 1fr;
-            }
-
             .profile {
-                flex-direction: column;
+                flex-direction: column; 
                 text-align: center;
+            }
+            
+            .profile-info {
+                 text-align: center; 
             }
 
             .cta-buttons {
-                flex-direction: column;
+                flex-direction: column; 
                 align-items: center;
             }
 
             .cta-primary,
             .cta-secondary {
                 width: 100%;
-                max-width: 300px;
-                justify-content: center;
+                max-width: 300px; 
+                justify-content: center; 
             }
         }
 
@@ -898,18 +908,18 @@
             .tone-btn {
                 padding: var(--space-2);
                 font-size: var(--text-xs);
-                min-width: 100px;
+                min-width: auto; 
+                flex-basis: calc(50% - var(--space-1)); 
+                flex-grow: 1; 
             }
-
-            .fit-grid {
-                grid-template-columns: 1fr;
+            .tone-options {
+                justify-content: space-around; 
             }
         }
     </style>
 </head>
 <body>
-    <!-- Tone Selector -->
-    <div class="tone-selector">
+    <div class="tone-selector" id="toneSelector">
         <div class="container">
             <div class="tone-selector-content">
                 <div class="tone-question">
@@ -917,32 +927,27 @@
                     <p>Choose the approach that feels right for where you are</p>
                 </div>
                 <div class="tone-options">
-                    <button class="tone-btn active" data-theme="simple">
-                        I don't know where to start
+                    <button class="tone-btn" data-theme="simple">
+                        <span class="emoji">🌱</span> <span class="tone-btn-text">Feeling Lost? Start Here</span>
                     </button>
                     <button class="tone-btn" data-theme="supportive">
-                        I need help, just not sure what kind
+                        <span class="emoji">🤝</span> <span class="tone-btn-text">Need Gentle Guidance?</span>
                     </button>
-                    <button class="tone-btn" data-theme="straightforward">
-                        Just show me what you do
+                    <button class="tone-btn active" data-theme="straightforward"> <span class="emoji">📊</span> <span class="tone-btn-text">Just the Facts, Please.</span>
                     </button>
                     <button class="tone-btn" data-theme="tactical">
-                        I've tried a lot. Show me what works
+                        <span class="emoji">🚀</span> <span class="tone-btn-text">Been Around the Block?</span>
                     </button>
-                    <button class="tone-btn" data-theme="technical">
-                        I'm tech-savvy but want to understand the AI approach
-                    </button>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-headline">I Help Overwhelmed People Make Sense of Their Operational Chaos</h1>
-                <p id="hero-subheadline">Feeling buried under tasks that should be simpler? Let me show you how AI can think through this with you.</p>
+                <h1 id="hero-headline">A Clearer Way to Manage Your Work.</h1>
+                <p id="hero-subheadline">I partner with you to simplify complexities and find more effective operational paths, using AI as a thinking tool.</p>
                 <a href="#contact" class="hero-cta" id="hero-cta">Let's Figure This Out</a>
                 <div class="hero-info">
                     <span id="hero-info-1">🧠 AI-augmented thinking partner</span>
@@ -953,16 +958,15 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="section services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" id="services-title">How We Can Work Together</h2>
+                 <h2 class="section-title" id="services-title">How We Can Work Together</h2>
                 <p class="section-subtitle" id="services-subtitle">Different ways to experience AI-augmented thinking</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3 id="service1-title">Let's Think This Through</h3>
+                    <h3 id="service1-title">Discovery Session</h3>
                     <div class="service-duration" id="service1-duration">30 minutes of AI-augmented conversation</div>
                     <ul class="service-features" id="service1-features">
                         <li>I'll show you how AI helps me understand your situation</li>
@@ -975,7 +979,7 @@
                 </div>
 
                 <div class="service-card">
-                    <h3 id="service2-title">Deep Dive with AI</h3>
+                    <h3 id="service2-title">Strategy Session</h3>
                     <div class="service-duration" id="service2-duration">90 minutes + comprehensive analysis</div>
                     <ul class="service-features" id="service2-features">
                         <li>Full AI-augmented operational analysis</li>
@@ -988,7 +992,7 @@
                 </div>
 
                 <div class="service-card">
-                    <h3 id="service3-title">Ongoing AI Partnership</h3>
+                    <h3 id="service3-title">Monthly Partnership</h3>
                     <div class="service-duration" id="service3-duration">30 days of regular check-ins</div>
                     <ul class="service-features" id="service3-features">
                         <li>Build sustainable systems together using AI</li>
@@ -1001,7 +1005,7 @@
                 </div>
 
                 <div class="service-card">
-                    <h3 id="service4-title">Extended Partnership</h3>
+                    <h3 id="service4-title">Ongoing Partnership</h3>
                     <div class="service-duration" id="service4-duration">Whatever timeline makes sense</div>
                     <ul class="service-features" id="service4-features">
                         <li>Fractional AI-augmented operations support</li>
@@ -1016,15 +1020,14 @@
         </div>
     </section>
 
-    <!-- Process Section -->
     <section class="section process">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" id="process-title">How This Actually Works</h2>
+                 <h2 class="section-title" id="process-title">How This Actually Works</h2>
                 <p class="section-subtitle" id="process-subtitle">AI-augmented thinking in practice</p>
             </div>
             <div class="process-grid">
-                <div class="process-step">
+                 <div class="process-step">
                     <div class="process-icon">👂</div>
                     <h3 id="process1-title">Listen & Process</h3>
                     <p id="process-text1">We'll talk about what's overwhelming you while AI helps me understand the deeper patterns and possibilities.</p>
@@ -1037,7 +1040,7 @@
                 <div class="process-step">
                     <div class="process-icon">💡</div>
                     <h3 id="process3-title">Show Possibilities</h3>
-                    <p id="process-text3">I'll demonstrate how AI reveals options you might not have considered, explained in normal language.</p>
+                    <p id="process-text3">I'll demonstrate how AI reveals options you might have considered, explained in normal language.</p>
                 </div>
                 <div class="process-step">
                     <div class="process-icon">🚀</div>
@@ -1048,44 +1051,41 @@
         </div>
     </section>
 
-    <!-- Fit Section -->
     <section class="section fit-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Is This Right for You?</h2>
+                 <h2 class="section-title">Is This Right for You?</h2>
             </div>
             <div class="fit-grid">
                 <div class="fit-card good">
-                    <h3 id="fit-good-title">This Might Help If You:</h3>
+                     <h3 id="fit-good-title">This is for you if...</h3>
                     <ul class="fit-list">
-                        <li id="fit-good-1">Feel overwhelmed by operational tasks that seem harder than they should be</li>
-                        <li id="fit-good-2">Handle day-to-day chaos but sense there's a simpler way</li>
-                        <li id="fit-good-3">Are curious about AI but don't want to become a tech person</li>
-                        <li id="fit-good-4">Want someone to think through problems WITH you, not just give advice</li>
-                        <li id="fit-good-5">Don't identify as a "businessperson" but still need systems that work</li>
-                        <li id="fit-good-6">Ready to see what AI-augmented thinking actually looks like</li>
+                        <li id="fit-good-1">You feel overwhelmed by operational tasks that seem harder than they should be</li>
+                        <li id="fit-good-2">You handle day-to-day chaos but sense there's a simpler way</li>
+                        <li id="fit-good-3">You are curious about AI but want to keep things simple</li>
+                        <li id="fit-good-4">You want someone to think through problems WITH you, offering a fresh perspective</li>
+                        <li id="fit-good-5">You need effective systems, whatever your role or field</li>
+                        <li id="fit-good-6">You're ready to see what AI-augmented thinking actually looks like</li>
                     </ul>
                 </div>
-                <div class="fit-card not-good">
-                    <h3 id="fit-bad-title">This Probably Won't Help If You:</h3>
+                <div class="fit-card not-good"> <h3 id="fit-bad-title">This approach works well when...</h3>
                     <ul class="fit-list">
-                        <li id="fit-bad-1">Already have sophisticated operational systems</li>
-                        <li id="fit-bad-2">Want traditional consulting without the AI component</li>
-                        <li id="fit-bad-3">Expect solutions without participating in the thinking process</li>
-                        <li id="fit-bad-4">Need enterprise-level implementations</li>
-                        <li id="fit-bad-5">Prefer to avoid AI entirely</li>
-                        <li id="fit-bad-6">Have everything organized exactly how you want it</li>
+                        <li id="fit-bad-1">You have well-established, sophisticated operational systems</li>
+                        <li id="fit-bad-2">You prefer traditional consulting without an AI component</li>
+                        <li id="fit-bad-3">You seek solutions without active participation in the thinking process</li>
+                        <li id="fit-bad-4">Your needs are primarily for large, enterprise-level implementations</li>
+                        <li id="fit-bad-5">You are looking to avoid AI insights entirely</li>
+                        <li id="fit-bad-6">Your current organization and systems meet all your needs</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="section about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" id="about-title">About This AI-Augmented Approach</h2>
+                 <h2 class="section-title" id="about-title">About This AI-Augmented Approach</h2>
             </div>
             <div class="about-content">
                 <div class="profile">
@@ -1093,7 +1093,7 @@
                         <img src="https://raw.githubusercontent.com/Splurfa/website-assets/main/derek-profile.jpeg" alt="Derek Yellin" onerror="this.style.display='none'; this.parentElement.innerHTML='DY';">
                     </div>
                     <div class="profile-info">
-                        <h3>Derek Yellin</h3>
+                         <h3>Derek Yellin</h3>
                         <p class="title" id="profile-title">AI-Augmented Operations Partner</p>
                         <div class="profile-tagline" id="profile-tagline">"I help you access AI's problem-solving power without becoming technical yourself."</div>
                     </div>
@@ -1103,25 +1103,24 @@
                 <p class="about-text" id="about-text">I spend my days showing people how AI can untangle operational messes they thought were just part of life. This site was built with AI. Our calls use AI. That's the point.</p>
                 
                 <div class="credentials">
-                    <div class="credential" id="credential-1">Real experience with overwhelmed people (not just "businesses")</div>
+                     <div class="credential" id="credential-1">Real experience with overwhelmed people (not just "businesses")</div>
                     <div class="credential" id="credential-2">AI does the heavy thinking—you get the insights</div>
                     <div class="credential" id="credential-3">See the magic happen during our actual conversation</div>
-                    <div class="credential" id="credential-4">No jargon, no assumptions about what you "should" want</div>
+                    <div class="credential" id="credential-4">No jargon, focusing on what you want to achieve</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section class="section faq">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" id="faq-title">Common Questions</h2>
+                 <h2 class="section-title" id="faq-title">Common Questions</h2>
             </div>
             <div class="faq-list">
-                <div class="faq-item">
+                 <div class="faq-item">
                     <div class="faq-question" id="faq-1-question">
-                        How do I know if this AI stuff will actually help me?
+                        How do I know if this AI approach will actually help me?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
@@ -1134,7 +1133,7 @@
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p id="faq-2-answer">Most of my clients don't think of themselves that way. I work with behavioral health professionals, support staff, overwhelmed individuals—anyone dealing with operational chaos.</p>
+                        <p id="faq-2-answer">Most of my clients focus on their core work, not "business" tasks. I work with behavioral health professionals, support staff, overwhelmed individuals—anyone dealing with operational chaos.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1159,11 +1158,10 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="final-cta" id="contact">
         <div class="container">
             <div class="final-cta-content">
-                <h2 id="cta-headline">Ready to Experience AI-Augmented Thinking?</h2>
+                 <h2 id="cta-headline">Experience AI-Augmented Thinking.</h2>
                 <p id="cta-subheadline">Let's tackle your operational chaos together</p>
                 <div class="cta-buttons">
                     <a href="https://calendly.com/derek-yellin" class="cta-primary" id="cta-primary">Let's Think This Through</a>
@@ -1174,480 +1172,456 @@
     </section>
 
     <script>
-        // Tone content variations - aligned with content document
+        // Tone content variations - aligned with the 4-tone structure
         const toneContent = {
-            simple: {
-                headline: "I Help Small Businesses Grow Better",
-                subheadline: "Feeling like there's untapped potential? Let me show you what's possible using smart tools and fresh thinking.",
-                heroCta: "Book a Session",
-                heroInfo1: "🌱 Years helping small businesses",
-                heroInfo2: "💡 Simple, practical ideas (AI-enhanced)",
-                heroInfo3: "🤝 Down-to-earth approach",
+            simple: { // 🌱 Feeling Lost? Start Here
+                headline: "A Simpler Way to Work.",
+                subheadline: "When work feels overwhelming, I help you find clarity and make your tasks easier.",
+                heroCta: "Let's Talk",
+                heroInfo1: "🌱 Gentle guidance",
+                heroInfo2: "💡 Simple, clear ideas (AI-enhanced)",
+                heroInfo3: "🤝 Friendly, down-to-earth approach",
                 profileTitle: "Your Operations Helper",
-                profileTagline: "I'm here to help you see new possibilities, not sell you anything complicated. Sometimes I use AI to think through problems—you'll see what that's like.",
-                experienceTitle: "What I Bring",
-                aboutText: "I've spent years helping small business owners like you see what's possible and take simple steps to get there. I use smart tools (including AI) to spot patterns and possibilities you might not see on your own.",
-                credential1: "Real small business experience",
+                profileTagline: "\"I'm here to help you see new possibilities and find ease. Sometimes I use AI to think through problems—you'll see what that's like, simply.\"",
+                experienceTitle: "My Approach",
+                aboutText: "I've spent years helping people like you find simpler ways and take easy steps to feel more in control. I use smart tools (including AI) to spot patterns and possibilities you might not see on your own.",
+                credential1: "Real experience helping people feel less overwhelmed",
                 credential2: "Simple, practical solutions (AI-enhanced when helpful)",
-                credential3: "Focus on what actually helps you",
-                credential4: "Work together, not just advise",
-                servicesTitle: "How I Can Help You Grow",
-                servicesSubtitle: "Pick what feels right for where you are now",
-                service1Title: "Let's Explore Together",
-                service1Duration: "30 minutes of friendly conversation",
-                service1Features: "<li>Understand where you are now</li><li>Spot new possibilities (I'll show you how AI helps with this)</li><li>Written summary within 24 hours</li><li>Clear next steps you can take</li>",
+                credential3: "Focus on what actually helps you feel better",
+                credential4: "We work together; I'm here to support you",
+                servicesTitle: "Ways I Can Help You Find Clarity",
+                servicesSubtitle: "Gentle steps to feel more in control",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of easy conversation",
+                service1Features: "<li>We'll talk about what feels complicated</li><li>I'll show you how smart tools help me understand</li><li>Experience a new way of thinking, step-by-step</li><li>Simple summary of our chat within 24 hours</li>",
                 service1Cta: "Let's Chat",
-                service2Title: "Take a Deeper Look",
-                service2Duration: "90 minutes + a growth plan",
-                service2Features: "<li>Look at how things work now</li><li>Find new growth possibilities (with AI-assisted analysis)</li><li>Spot ways to save time and money</li><li>Simple plan you can follow</li>",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + a simple guide",
+                service2Features: "<li>A calm look at how things are working now</li><li>Discover simpler ways (with AI-assisted insights)</li><li>Spot chances to make things easier</li><li>A straightforward guide you can use</li>",
                 service2Cta: "Let's Chat",
-                service3Title: "Grow Together",
-                service3Duration: "30 days of partnership",
-                service3Features: "<li>Build better ways together</li><li>New systems + simple training</li><li>Help your team grow too (see how smart tools can help)</li><li>Check back in after 30 days</li>",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of friendly support",
+                service3Features: "<li>We'll create easier ways of doing things together</li><li>New habits + easy-to-follow guidance</li><li>See how smart tools can lighten your load</li><li>We'll check in to make sure it's working for you</li>",
                 service3Cta: "Let's Chat",
-                service4Title: "Ongoing Partnership",
-                service4Duration: "Whatever timeline works for you",
-                service4Features: "<li>Be your part-time operations helper</li><li>Share in your success as you grow</li><li>Keep finding new improvements (AI-assisted insights)</li><li>Grow together long-term</li>",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Whatever timeline feels right for you",
+                service4Features: "<li>Your go-to person for operational ease</li><li>Continued support as you feel more confident</li><li>Keep finding easier ways (AI-assisted insights)</li><li>Long-term help, adapting to your needs</li>",
                 service4Cta: "Let's Chat",
-                processTitle: "How We'll Work Together",
-                processSubtitle: "Simple steps, no overwhelming frameworks",
-                process1Title: "Listen",
-                process2Title: "Explore",
-                process3Title: "Suggest",
-                process4Title: "Support",
-                processText1: "We'll talk about your business and where you'd like it to go. No judgment, just curiosity.",
-                processText2: "I'll help you see new possibilities you might not have noticed yet. You'll experience how AI can help us think through this together.",
-                processText3: "I'll share some ideas that might help, based on what's worked for others and what smart analysis reveals.",
-                processText4: "If you want, we can work together to make those possibilities real.",
-                fitGoodTitle: "This Might Be Perfect If You:",
-                fitGood1: "Run a small business and feel like there's more potential",
-                fitGood2: "Handle day-to-day operations but sense things could work better",
-                fitGood3: "Want simple improvements that don't overwhelm you",
-                fitGood4: "Like working with someone who explains things clearly",
-                fitGood5: "Are curious about what AI can do but don't want to become technical",
-                fitGood6: "Want a helper, not someone who takes over",
-                fitBadTitle: "This Probably Isn't Right If You:",
-                fitBad1: "Need big corporate solutions",
-                fitBad2: "Want someone to sell you expensive software",
-                fitBad3: "Expect everything to change overnight",
-                fitBad4: "Already have everything figured out perfectly",
-                fitBad5: "Just want the cheapest option available",
-                fitBad6: "Prefer to avoid AI entirely",
-                aboutTitle: "About Derek",
-                faqTitle: "Common Questions",
-                faq1Question: "How do you know if you can help me?",
-                faq1Answer: "In our first chat, we'll explore whether I can actually help you grow. If not, I'll tell you honestly. You'll also experience what it's like when I use AI to think through problems with you.",
-                faq2Question: "What types of businesses do you work with?",
-                faq2Answer: "I work with business owners and managers who sense there's more potential in their operations. I also help people in support roles, behavioral health, and anyone who handles operational tasks but doesn't necessarily think of themselves as \"doing business.\"",
-                faq3Question: "Do you sell software or require technical knowledge?",
-                faq3Answer: "I don't sell software or require you to be technical. I use AI and other smart tools to help you grow, but you just participate in the conversation and experience what that looks like.",
-                faq4Question: "How quickly will I see results?",
-                faq4Answer: "Some improvements happen quickly, others take time. You'll start seeing new possibilities pretty soon though.",
-                ctaHeadline: "Ready to Explore What's Possible?",
-                ctaSubheadline: "Let's start with a simple conversation about growth",
-                ctaPrimary: "Book a Session",
-                ctaSecondary: "Send Me a Message"
+                processTitle: "Our Simple Process",
+                processSubtitle: "Easy steps, no confusing jargon",
+                process1Title: "We Talk",
+                process2Title: "We Explore",
+                process3Title: "We Find Ideas",
+                process4Title: "We Support",
+                processText1: "We'll chat about what's on your mind. No pressure, just a conversation.",
+                processText2: "I'll help you see things in a new light. You'll experience how smart tools can help us think clearly together.",
+                processText3: "I'll share some simple ideas that might help, based on what we discover.",
+                processText4: "If you like, we can work together to make those ideas a reality in a way that feels good to you.",
+                fitGoodTitle: "This is for you if...",
+                fitGood1: "You feel swamped by daily tasks",
+                fitGood2: "You sense things could be easier, but you're unsure how",
+                fitGood3: "You want simple improvements that feel manageable",
+                fitGood4: "You like working with someone who explains things clearly",
+                fitGood5: "You're curious about new tools but want to keep it simple",
+                fitGood6: "You'd like a helper to think things through with you",
+                fitBadTitle: "This approach works well when...", 
+                fitBad1: "You need large, corporate-style solutions",
+                fitBad2: "You are looking for complex software installations",
+                fitBad3: "You expect big changes without exploring together",
+                fitBad4: "You feel everything is already perfectly organized",
+                fitBad5: "Your main focus is finding the lowest-cost option",
+                fitBad6: "You prefer to avoid any new tools or approaches",
+                aboutTitle: "My Focus: Your Peace of Mind",
+                faqTitle: "Your Questions Answered",
+                faq1Question: "How will I know if this can help me?",
+                faq1Answer: "In our first chat, we'll explore if this is a good fit. If not, I'll say so. You'll also experience what it's like when I use smart tools to think through problems with you, in a simple way.",
+                faq2Question: "What if I'm not a \"business person\"?",
+                faq2Answer: "That's perfectly okay. I help many individuals who are focused on their main work or passion, and just want the \"other stuff\" to be less chaotic.",
+                faq3Question: "Do I need to be tech-savvy?",
+                faq3Answer: "Not at all. I handle any tools we use. You just bring your thoughts and experiences to our conversation.",
+                faq4Question: "How soon will things feel easier?",
+                faq4Answer: "You'll start seeing new possibilities and feeling a bit more clarity from our very first conversation.",
+                ctaHeadline: "It's Time for a Simpler Way.", 
+                ctaSubheadline: "Let's start with a simple conversation about finding ease.",
+                ctaPrimary: "Let's Talk",
+                ctaSecondary: "Send a Message"
             },
-            supportive: {
-                headline: "Your Business Growth Partner",
-                subheadline: "I help business owners, managers, and operational professionals unlock potential and build systems that scale, using smart tools and human insight.",
-                heroCta: "Book a Session",
-                heroInfo1: "🌱 Years of growth-focused experience",
-                heroInfo2: "🚀 Supportive guidance approach (AI-enhanced)",
-                heroInfo3: "🤝 Partnership-minded collaboration",
-                profileTitle: "Business Growth Partner",
-                profileTagline: "I'm here to support your growth journey, not push solutions you don't need. I use AI thoughtfully to see patterns and possibilities that might not be obvious.",
-                experienceTitle: "How I Support Growth",
-                aboutText: "I've spent years understanding the unique challenges of growing operations and providing thoughtful, supportive guidance that actually works. Smart tools help me see what manual analysis might miss, but the partnership is always human-centered.",
-                credential1: "Deep experience with growing businesses",
+            supportive: { // 🤝 Need Gentle Guidance?
+                headline: "Your Partner in Finding Clarity.",
+                subheadline: "When you feel stuck or unsure what to tackle first, I'm here to help you navigate operational challenges and build confidence in your systems.", 
+                heroCta: "Let's Explore Together",
+                heroInfo1: "🤝 Supportive guidance approach",
+                heroInfo2: "💡 AI-enhanced insights for clarity",
+                heroInfo3: "🌱 Partnership-minded collaboration",
+                profileTitle: "Your Partner in Clarity & Operations",
+                profileTagline: "\"I'm here to support your journey to operational ease, not push solutions you don't need. I use AI thoughtfully to see patterns and possibilities that might not be obvious.\"",
+                experienceTitle: "How I Support You",
+                aboutText: "I've spent years understanding the unique challenges people face with their operations and providing thoughtful, supportive guidance that actually works. Smart tools help me see what manual analysis might miss, but our partnership is always human-centered.",
+                credential1: "Deep experience with diverse operational challenges",
                 credential2: "Human-centered, supportive approach (AI-enhanced)",
                 credential3: "Partnership-focused collaboration",
-                credential4: "Implementation support, not just advice",
-                servicesTitle: "Ways I Can Support Your Growth",
+                credential4: "Implementation support and encouragement, not just advice",
+                servicesTitle: "Ways I Can Support Your Journey",
                 servicesSubtitle: "Choose the level of partnership that feels right",
-                service1Title: "Growth Exploration",
-                service1Duration: "30 minutes of focused conversation",
-                service1Features: "<li>Understand your current operations</li><li>Identify growth opportunities (with AI-assisted pattern recognition)</li><li>Written insights within 24 hours</li><li>Clear next steps forward</li>",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of focused, supportive conversation",
+                service1Features: "<li>Understand your current situation and goals</li><li>Identify opportunities for improvement (with AI-assisted pattern recognition)</li><li>Written insights and supportive notes within 24 hours</li><li>Clear next steps forward, together</li>",
                 service1Cta: "Book Session",
-                service2Title: "Operations Growth Review",
-                service2Duration: "90 minutes + comprehensive roadmap",
-                service2Features: "<li>Thorough potential assessment</li><li>Prioritized growth opportunities (AI-enhanced analysis)</li><li>Efficiency improvement strategies</li><li>Clear implementation pathway</li>",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + a supportive roadmap",
+                service2Features: "<li>Thorough assessment of your operational landscape</li><li>Prioritized opportunities for positive change (AI-enhanced analysis)</li><li>Strategies for greater ease and effectiveness</li><li>A clear, supportive pathway for implementation</li>",
                 service2Cta: "Book Session",
-                service3Title: "Growth Implementation Partnership",
-                service3Duration: "30 days of guided development",
-                service3Features: "<li>Collaborate on building solutions</li><li>Develop scalable systems + training</li><li>Support team growth and development (AI-informed insights)</li><li>Comprehensive 30-day follow-up</li>",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of collaborative development",
+                service3Features: "<li>Collaborate on building solutions that feel right</li><li>Develop sustainable systems + supportive guidance</li><li>Support your team's growth and understanding (AI-informed insights)</li><li>Comprehensive 30-day follow-up and encouragement</li>",
                 service3Cta: "Book Session",
-                service4Title: "Ongoing Growth Partnership",
-                service4Duration: "Flexible support as you scale",
-                service4Features: "<li>Dedicated fractional operations partner</li><li>Performance-based growth support</li><li>Continuous optimization guidance (AI-assisted)</li><li>Strategic long-term scaling partnership</li>",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Flexible support as your needs evolve",
+                service4Features: "<li>Your dedicated fractional operations partner, here for you</li><li>Support focused on your well-being and effectiveness</li><li>Continuous optimization guidance (AI-assisted)</li><li>Strategic long-term partnership for sustained ease</li>",
                 service4Cta: "Book Session",
-                processTitle: "My Growth-Focused Approach",
-                processSubtitle: "Thoughtful, step-by-step guidance tailored to your potential",
+                processTitle: "My Supportive Approach",
+                processSubtitle: "Thoughtful, step-by-step guidance tailored to your needs",
                 process1Title: "Understand",
                 process2Title: "Discover",
                 process3Title: "Guide",
                 process4Title: "Support",
-                processText1: "I take time to understand your unique situation and growth aspirations, using smart tools to see the full picture.",
-                processText2: "Together we discover what's working well and where new opportunities exist, with AI helping us spot patterns.",
-                processText3: "I offer tailored guidance based on your specific context and growth goals, informed by both experience and smart analysis.",
-                processText4: "I stay with you through implementation, providing support as you scale and grow.",
-                fitGoodTitle: "We're Likely a Great Match If You:",
-                fitGood1: "Lead a growing business and want supportive guidance",
-                fitGood2: "Manage operations and seek thoughtful partnership",
-                fitGood3: "Value sustainable growth over quick fixes",
-                fitGood4: "Want collaborative solutions tailored to your context",
-                fitGood5: "Ready to invest in meaningful, lasting improvements",
-                fitGood6: "Appreciate ongoing support through implementation",
-                fitBadTitle: "We May Not Be the Right Fit If You:",
-                fitBad1: "Need enterprise-scale implementations",
-                fitBad2: "Want technology vendors or software sales",
-                fitBad3: "Expect instant transformation without collaboration",
-                fitBad4: "Have everything optimized to your satisfaction",
-                fitBad5: "Prioritize lowest cost over quality partnership",
-                fitBad6: "Prefer purely hands-off consulting relationships",
+                processText1: "I take time to understand your unique situation and aspirations, using smart tools to see the full picture with you.",
+                processText2: "Together we discover what's working well and where new possibilities exist, with AI helping us spot patterns and connections.",
+                processText3: "I offer tailored guidance based on your specific context and goals, informed by both experience and smart analysis.",
+                processText4: "I stay with you through implementation, providing support and encouragement as you build confidence and find more ease.",
+                fitGoodTitle: "This is for you if...",
+                fitGood1: "You're looking for supportive guidance to navigate challenges",
+                fitGood2: "You manage operational tasks and seek a thoughtful partner",
+                fitGood3: "You value sustainable improvements over quick fixes",
+                fitGood4: "You want collaborative solutions tailored to your situation",
+                fitGood5: "You're ready to invest in meaningful, lasting positive change",
+                fitGood6: "You appreciate ongoing support through implementation",
+                fitBadTitle: "This approach works well when...",
+                fitBad1: "You require large, enterprise-scale implementations",
+                fitBad2: "You are primarily seeking technology vendors or software sales",
+                fitBad3: "You expect instant transformation without collaboration",
+                fitBad4: "Your operations are already optimized to your full satisfaction",
+                fitBad5: "Your main criteria is the lowest possible cost",
+                fitBad6: "You prefer purely hands-off consulting relationships",
                 aboutTitle: "About Your Guide",
                 faqTitle: "Questions You Might Have",
                 faq1Question: "How will we know if we're a good fit?",
-                faq1Answer: "During our first conversation, we'll explore whether my growth-focused approach aligns with your goals. You'll also see how I use smart tools to enhance our thinking together.",
+                faq1Answer: "During our first conversation, we'll explore whether my supportive approach aligns with your goals. You'll also see how I use smart tools to enhance our thinking together.",
                 faq2Question: "What kinds of people do you support?",
-                faq2Answer: "I work with business owners, operations managers, and teams who want thoughtful guidance in maximizing their potential. I also work with people in behavioral health, support roles, and complex operational positions who need better systems but don't think of themselves as \"business people.\"",
+                faq2Answer: "I work with individuals, team leads, and managers who want thoughtful guidance in making their operations smoother and more supportive of their goals. This includes people in behavioral health, support roles, and anyone needing better systems.",
                 faq3Question: "Do you require technical expertise or sell software?",
-                faq3Answer: "I focus on practical growth solutions, not software sales. Technical expertise isn't required—just openness to new possibilities and experiencing how smart tools can enhance our work together.",
-                faq4Question: "What kind of timeline should I expect?",
-                faq4Answer: "You'll typically see meaningful progress as we work together, with some insights emerging right away.",
-                ctaHeadline: "Ready for Supportive Growth Guidance?",
-                ctaSubheadline: "Let's work together to unlock your operational potential",
+                faq3Answer: "I focus on practical solutions and support, not software sales. Technical expertise isn't required—just openness to new possibilities and experiencing how smart tools can enhance our work together.",
+                faq4Question: "What kind of timeline should I expect for positive changes?",
+                faq4Answer: "You'll typically see meaningful progress and feel more supported as we work together, with some insights emerging right away.",
+                ctaHeadline: "Begin Your Supportive Growth Journey.", 
+                ctaSubheadline: "Let's work together to unlock your operational potential and find more ease.",
                 ctaPrimary: "Book a Session",
                 ctaSecondary: "Send Your Questions"
             },
-            straightforward: {
-                headline: "Business Operations Consultant",
-                subheadline: "I help you maximize operational potential and scale what's already working, using proven methods and AI-enhanced analysis.",
-                heroCta: "Book a Session",
-                heroInfo1: "⚡ Years of operations optimization",
-                heroInfo2: "🚀 Growth-focused solutions (AI-enhanced)",
-                heroInfo3: "🤝 Results-oriented approach",
-                profileTitle: "Business Operations Consultant",
-                profileTagline: "I'm here to help you optimize what's working, not sell you what's trending. AI helps me see patterns and possibilities faster than traditional analysis.",
-                experienceTitle: "Professional Background",
-                aboutText: "I have years of experience helping organizations maximize operational potential and scale effectively through practical, proven approaches enhanced with smart analysis tools.",
-                credential1: "Extensive operations optimization experience",
-                credential2: "Growth-focused problem solving (AI-enhanced)",
-                credential3: "Practical implementation expertise",
-                credential4: "Results-driven consulting approach",
-                servicesTitle: "How I Help",
-                servicesSubtitle: "Choose the level of support that fits your growth goals",
-                service1Title: "Strategy Session",
-                service1Duration: "30 minutes",
-                service1Features: "<li>Assess current operations</li><li>Identify optimization opportunities (AI-assisted analysis)</li><li>Written summary within 24 hours</li><li>Clear growth recommendations</li>",
-                service1Cta: "Book Now",
-                service2Title: "Operations Optimization Review",
-                service2Duration: "90 minutes + detailed report",
-                service2Features: "<li>Comprehensive potential analysis</li><li>Prioritized growth opportunities (AI-enhanced insights)</li><li>Efficiency enhancement options</li><li>Implementation roadmap</li>",
-                service2Cta: "Book Now",
-                service3Title: "Implementation Support",
-                service3Duration: "30 days, weekly sessions",
-                service3Features: "<li>Build solutions together</li><li>Scalable systems + training</li><li>Team optimization support (AI-informed)</li><li>30-day follow-up included</li>",
-                service3Cta: "Book Now",
-                service4Title: "Custom Engagements",
-                service4Duration: "Flexible formats for scaling needs",
-                service4Features: "<li>Fractional operations partner</li><li>Revenue-sharing growth support</li><li>Ongoing optimization guidance (AI-assisted)</li><li>Long-term scaling relationships</li>",
-                service4Cta: "Book Now",
-                processTitle: "What to Expect",
-                processSubtitle: "My approach to understanding and optimizing your operations",
-                process1Title: "Assess",
-                process2Title: "Analyze",
-                process3Title: "Recommend",
-                process4Title: "Implement",
-                processText1: "I learn about your current operations and understand your growth objectives, using smart tools to see the full picture.",
-                processText2: "I identify patterns and spot opportunities to maximize your operational potential, enhanced by AI-powered analysis.",
-                processText3: "I suggest specific optimizations based on proven approaches and your context, informed by smart analysis.",
-                processText4: "If you want support, we build solutions together that your team can scale.",
-                fitGoodTitle: "Ideal Client Profile:",
-                fitGood1: "Business owners/operations managers seeking optimization",
-                fitGood2: "Organizations with solid foundations wanting to scale",
-                fitGood3: "Teams ready to implement practical improvements",
-                fitGood4: "Leaders who value proven approaches over trends",
-                fitGood5: "Businesses prepared to invest in sustainable growth",
-                fitGood6: "Operations that need strategic enhancement",
-                fitBadTitle: "Poor Fit Indicators:",
-                fitBad1: "Enterprise-level complexity requirements",
-                fitBad2: "Software vendor relationships sought",
-                fitBad3: "Unrealistic timeline expectations",
-                fitBad4: "Operations already optimized effectively",
-                fitBad5: "Budget-only decision criteria",
-                fitBad6: "Resistance to operational changes",
-                aboutTitle: "About Derek Yellin",
-                faqTitle: "Frequently Asked Questions",
-                faq1Question: "How do you know if you can help me?",
-                faq1Answer: "We'll determine that in our first conversation. I'll be honest about whether my expertise matches your growth objectives. You'll also see how I use AI tools to enhance our analysis.",
-                faq2Question: "What types of businesses do you work with?",
-                faq2Answer: "I work with business owners, operations managers, and teams who want to maximize their operational potential and scale what's working.",
-                faq3Question: "Do you sell software or require technical knowledge?",
-                faq3Answer: "No software sales, and technical expertise isn't required. I help you optimize operations using approaches that make sense for your situation, sometimes enhanced with AI analysis.",
+            straightforward: { // 📊 Just the Facts, Please. (DEFAULT)
+                headline: "A Clearer Way to Manage Your Work.",
+                subheadline: "I partner with you to simplify complexities and find more effective operational paths, using AI as a thinking tool.",
+                heroCta: "Let's Figure This Out",
+                heroInfo1: "🧠 AI-augmented thinking partner",
+                heroInfo2: "🛠️ No tech skills required",
+                heroInfo3: "✨ Experience the magic firsthand",
+                profileTitle: "AI-Augmented Operations Partner",
+                profileTagline: "\"I help you access AI's problem-solving power without becoming technical yourself.\"",
+                experienceTitle: "What Makes This Different",
+                aboutText: "I spend my days showing people how AI can untangle operational messes they thought were just part of life. This site was built with AI. Our calls use AI. That's the point.",
+                credential1: "Real experience with overwhelmed people (not just \"businesses\")",
+                credential2: "AI does the heavy thinking—you get the insights",
+                credential3: "See the magic happen during our actual conversation",
+                credential4: "No jargon, focusing on what you want to achieve",
+                servicesTitle: "How We Can Work Together",
+                servicesSubtitle: "Different ways to experience AI-augmented thinking",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of AI-augmented conversation",
+                service1Features: "<li>I'll show you how AI helps me understand your situation</li><li>We'll use AI to spot patterns you might not see</li><li>You'll experience the thinking process, not just hear about it</li><li>Written insights within 24 hours (also AI-assisted)</li>",
+                service1Cta: "Experience This",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + comprehensive analysis",
+                service2Features: "<li>Full AI-augmented operational analysis</li><li>Live demonstration of AI problem-solving</li><li>Prioritized recommendations based on AI insights</li><li>Clear next steps you can actually implement</li>",
+                service2Cta: "Experience This",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of regular check-ins",
+                service3Features: "<li>Build sustainable systems together using AI</li><li>I handle the AI complexity, you get the results</li><li>See how AI thinking becomes part of your routine</li><li>Learn to recognize when AI could help (without becoming technical)</li>",
+                service3Cta: "Experience This",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Whatever timeline makes sense",
+                service4Features: "<li>Fractional AI-augmented operations support</li><li>Ongoing access to AI-powered insights</li><li>Help your team experience better ways of working</li><li>Long-term partnership as your needs evolve</li>",
+                service4Cta: "Experience This",
+                processTitle: "How This Actually Works",
+                processSubtitle: "AI-augmented thinking in practice",
+                process1Title: "Listen & Process",
+                process2Title: "Think Together",
+                process3Title: "Show Possibilities",
+                process4Title: "Build Together",
+                processText1: "We'll talk about what's overwhelming you while AI helps me understand the deeper patterns and possibilities.",
+                processText2: "You'll see AI helping us break down complex problems into manageable pieces in real-time.",
+                processText3: "I'll demonstrate how AI reveals options you might have considered, explained in normal language.",
+                processText4: "If it makes sense, we'll create solutions together—with AI doing the complex thinking so you don't have to.",
+                fitGoodTitle: "This is for you if...",
+                fitGood1: "You feel overwhelmed by operational tasks that seem harder than they should be",
+                fitGood2: "You handle day-to-day chaos but sense there's a simpler way",
+                fitGood3: "You are curious about AI but want to keep things simple",
+                fitGood4: "You want someone to think through problems WITH you, offering a fresh perspective",
+                fitGood5: "You need effective systems, whatever your role or field",
+                fitGood6: "You're ready to see what AI-augmented thinking actually looks like",
+                fitBadTitle: "This approach works well when...",
+                fitBad1: "You have well-established, sophisticated operational systems",
+                fitBad2: "You prefer traditional consulting without an AI component",
+                fitBad3: "You seek solutions without active participation in the thinking process",
+                fitBad4: "Your needs are primarily for large, enterprise-level implementations",
+                fitBad5: "You are looking to avoid AI insights entirely",
+                fitBad6: "Your current organization and systems meet all your needs",
+                aboutTitle: "About This AI-Augmented Approach",
+                faqTitle: "Common Questions",
+                faq1Question: "How do I know if this AI approach will actually help me?",
+                faq1Answer: "In our first conversation, you'll experience it directly. No theory—you'll see AI helping us think through your actual situation.",
+                faq2Question: "What if I'm not a \"business person\"?",
+                faq2Answer: "Most of my clients focus on their core work, not \"business\" tasks. I work with behavioral health professionals, support staff, overwhelmed individuals—anyone dealing with operational chaos.",
+                faq3Question: "Do I need to understand AI or technology?",
+                faq3Answer: "Not at all. I handle the technical complexity. You just participate in the conversation and experience what AI-augmented thinking feels like.",
                 faq4Question: "How quickly will I see results?",
-                faq4Answer: "You'll typically see progress as we work together, with some optimizations happening relatively quickly.",
-                ctaHeadline: "Ready to Optimize Your Operations?",
-                ctaSubheadline: "Let's explore how to maximize your business potential",
-                ctaPrimary: "Book a Session",
-                ctaSecondary: "Email Your Questions"
+                faq4Answer: "You'll experience the difference during our first conversation. Implementation depends on your situation, but the thinking clarity happens immediately.",
+                ctaHeadline: "Experience AI-Augmented Thinking.",
+                ctaSubheadline: "Let's tackle your operational chaos together",
+                ctaPrimary: "Let's Think This Through",
+                ctaSecondary: "Send Me Your Situation"
             },
-            tactical: {
-                headline: "Operations Performance Optimizer",
-                subheadline: "I help experienced operators maximize growth potential and scale high-performing systems using battle-tested methods and AI-powered analysis.",
-                heroCta: "Book a Session",
-                heroInfo1: "⚡ Years of performance optimization",
-                heroInfo2: "🎯 Battle-tested methodologies (AI-enhanced)",
-                heroInfo3: "🚀 Results-driven execution",
+            tactical: { // 🚀 Been Around the Block?
+                headline: "Operations Performance Optimizer.",
+                subheadline: "I help experienced operators maximize potential and scale high-performing systems using battle-tested methods and AI-powered analysis for superior results.",
+                heroCta: "Schedule Strategic Review",
+                heroInfo1: "🎯 Years of performance optimization",
+                heroInfo2: "🚀 Battle-tested methodologies (AI-enhanced)",
+                heroInfo3: "📈 Results-driven execution",
                 profileTitle: "Operations Performance Optimizer",
-                profileTagline: "I deploy what works, not what's popular. AI helps me identify high-impact opportunities faster than manual analysis, but results matter more than tools.",
+                profileTagline: "\"I deploy what works to achieve measurable results. AI helps me identify high-impact opportunities faster, but outcomes are what matter.\"",
                 experienceTitle: "Performance Track Record",
-                aboutText: "Years of tactical operations work with experienced operators who need proven solutions that actually move the needle. Smart tools reveal patterns that manual analysis misses.",
+                aboutText: "Years of tactical operations work with experienced operators who need proven solutions that actually move the needle. Smart tools reveal patterns that manual analysis misses, accelerating our path to superior performance.",
                 credential1: "Extensive high-performance operations experience",
                 credential2: "Battle-tested optimization methodologies (AI-enhanced)",
-                credential3: "Tactical implementation expertise",
-                credential4: "Results-focused execution approach",
-                servicesTitle: "Proven Growth Solutions",
-                servicesSubtitle: "Battle-tested approaches enhanced with AI insights",
-                service1Title: "Performance Assessment",
-                service1Duration: "30 minutes of focused analysis",
-                service1Features: "<li>Current operations evaluation</li><li>Growth opportunity identification (AI-powered pattern recognition)</li><li>Written insights within 24 hours</li><li>Actionable optimization steps</li>",
+                credential3: "Tactical implementation expertise for real-world results",
+                credential4: "Results-focused execution approach, prioritizing impact",
+                servicesTitle: "Proven Solutions for Peak Performance",
+                servicesSubtitle: "Battle-tested approaches enhanced with AI insights for measurable impact",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of focused, high-level analysis",
+                service1Features: "<li>Rapid evaluation of current operations and performance gaps</li><li>Identification of high-impact improvement opportunities (AI-powered pattern recognition)</li><li>Concise insights and actionable steps delivered within 24 hours</li><li>Strategic recommendations for immediate optimization</li>",
                 service1Cta: "Execute",
-                service2Title: "Operations Optimization",
-                service2Duration: "90 minutes + performance plan",
-                service2Features: "<li>Rapid potential analysis</li><li>High-impact growth levers identified (AI-enhanced)</li><li>Performance enhancement strategies</li><li>Tactical implementation timeline</li>",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + comprehensive performance plan",
+                service2Features: "<li>In-depth potential analysis and bottleneck identification</li><li>High-impact improvement levers identified (AI-enhanced)</li><li>Advanced performance enhancement strategies</li><li>Tactical implementation timeline and KPIs</li>",
                 service2Cta: "Execute",
-                service3Title: "Performance Implementation",
-                service3Duration: "30 days of tactical execution",
-                service3Features: "<li>Deploy optimizations systematically</li><li>Build high-performance systems + training</li><li>Drive team performance improvements (AI-informed)</li><li>Results-focused 30-day follow-up</li>",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of focused, tactical execution",
+                service3Features: "<li>Systematic deployment of targeted optimizations</li><li>Build and refine high-performance systems + team alignment</li><li>Drive measurable team performance improvements (AI-informed)</li><li>Results-focused 30-day review and iteration</li>",
                 service3Cta: "Execute",
-                service4Title: "Fractional Operations",
-                service4Duration: "Ongoing performance partnership",
-                service4Features: "<li>Embedded fractional operations partner</li><li>Performance-based revenue sharing</li><li>Continuous optimization execution (AI-assisted)</li><li>Strategic scaling partnership</li>",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Ongoing strategic performance partnership",
+                service4Features: "<li>Embedded fractional operations leadership</li><li>Performance-based engagements and shared success</li><li>Continuous optimization execution (AI-assisted)</li><li>Strategic scaling and competitive advantage partnership</li>",
                 service4Cta: "Execute",
-                processTitle: "Performance-Driven Method",
-                processSubtitle: "Tactical approach focused on maximizing operational potential",
+                processTitle: "Performance-Driven Methodology",
+                processSubtitle: "A tactical approach focused on maximizing your operational potential and achieving superior results",
                 process1Title: "Evaluate",
                 process2Title: "Diagnose",
                 process3Title: "Optimize",
                 process4Title: "Scale",
-                processText1: "Rapid operational assessment to identify high-impact growth opportunities and untapped potential, enhanced by AI analysis.",
-                processText2: "Performance analysis to pinpoint exactly where you can maximize growth and efficiency, using AI-powered pattern recognition.",
-                processText3: "Proven solutions with clear performance metrics and implementation timelines, informed by AI insights.",
-                processText4: "Hands-on execution with measurable results and continuous performance optimization.",
-                fitGoodTitle: "High-Performance Match If You:",
-                fitGood1: "Experienced operator with sophisticated challenges",
-                fitGood2: "Manage high-performing teams needing optimization",
-                fitGood3: "Value tactical expertise over theoretical frameworks",
-                fitGood4: "Ready to implement proven, results-driven solutions",
-                fitGood5: "Committed to measurable performance improvements",
-                fitGood6: "Want execution partner, not just strategy consultant",
-                fitBadTitle: "Poor Tactical Fit If You:",
-                fitBad1: "Need basic operational guidance",
-                fitBad2: "Want software sales or vendor relationships",
-                fitBad3: "Expect results without tactical implementation",
-                fitBad4: "Operations already performing at peak efficiency",
-                fitBad5: "Unwilling to invest in proven methodologies",
-                fitBad6: "Prefer theoretical approaches over practical execution",
-                aboutTitle: "Track Record",
-                faqTitle: "Key Questions",
-                faq1Question: "How do you determine if we're a fit?",
-                faq1Answer: "Initial assessment determines fit based on your operational sophistication and growth ambitions. You'll see how I use AI to enhance tactical analysis.",
-                faq2Question: "Who do you work with?",
-                faq2Answer: "I work with experienced operators who want tactical expertise to maximize their operational potential and scale effectively.",
-                faq3Question: "Do you push software or require technical skills?",
-                faq3Answer: "I deploy whatever tools drive results—sometimes AI, always practical. Your technical skills matter less than your commitment to growth.",
-                faq4Question: "What kind of results timeline should I expect?",
-                faq4Answer: "Performance improvements typically show impact as we implement, with sustained growth developing over time.",
-                ctaHeadline: "Ready to Maximize Performance?",
-                ctaSubheadline: "Deploy proven solutions that unlock your operational potential",
-                ctaPrimary: "Book a Session",
+                processText1: "Rapid, data-informed operational assessment to identify high-impact opportunities and untapped potential, enhanced by AI analysis.",
+                processText2: "Performance analysis to pinpoint exactly where you can maximize growth and efficiency, using AI-powered pattern recognition and predictive insights.",
+                processText3: "Deployment of proven solutions with clear performance metrics and implementation timelines, informed by AI insights for maximum leverage.",
+                processText4: "Hands-on execution support with measurable results, continuous performance optimization, and strategies for sustainable scaling.",
+                fitGoodTitle: "This is for you if...",
+                fitGood1: "You are an experienced operator facing sophisticated challenges",
+                fitGood2: "You manage high-performing teams needing further optimization and leverage",
+                fitGood3: "You value tactical expertise and proven, results-driven solutions",
+                fitGood4: "You are ready to implement decisive actions for measurable improvements",
+                fitGood5: "You are committed to achieving and sustaining peak performance",
+                fitGood6: "You seek an execution partner to drive results, not just strategy",
+                fitBadTitle: "This approach works well when...",
+                fitBad1: "You require basic operational guidance or introductory concepts",
+                fitBad2: "You are primarily looking for software sales or vendor relationships",
+                fitBad3: "You expect results without focused tactical implementation and commitment",
+                fitBad4: "Your operations are already performing at absolute peak efficiency",
+                fitBad5: "You are hesitant to invest in proven, high-impact methodologies",
+                fitBad6: "You prefer theoretical approaches over practical, hands-on execution",
+                aboutTitle: "Track Record & Expertise",
+                faqTitle: "Key Questions for Experienced Operators",
+                faq1Question: "How do you determine if we're a strategic fit?",
+                faq1Answer: "An initial assessment determines fit based on your operational sophistication, performance goals, and readiness for tactical action. You'll see how I use AI to enhance strategic and tactical analysis.",
+                faq2Question: "Who benefits most from your tactical approach?",
+                faq2Answer: "I work with experienced operators, leaders, and teams who want tactical expertise to maximize their operational potential, overcome plateaus, and scale effectively.",
+                faq3Question: "What's your stance on specific tools or technical skills?",
+                faq3Answer: "I deploy whatever tools and methods drive results—sometimes AI, always practical and proven. Your team's existing skills are leveraged; the focus is on outcomes.",
+                faq4Question: "What kind of results timeline can be expected?",
+                faq4Answer: "Performance improvements typically show measurable impact as we implement targeted actions, with sustained growth and efficiency gains developing over time through continuous optimization.",
+                ctaHeadline: "Maximize Your Performance Today.", 
+                ctaSubheadline: "Deploy proven solutions that unlock your operational potential and drive superior results.",
+                ctaPrimary: "Schedule Strategic Review",
                 ctaSecondary: "Strategic Inquiry"
-            },
-            technical: {
-                headline: "Strategic Operations Architecture",
-                subheadline: "Systematic optimization of operational frameworks for maximum growth potential. AI-enhanced analysis where beneficial, human judgment always.",
-                heroCta: "Book a Session",
-                heroInfo1: "⚡ Years of systems architecture experience",
-                heroInfo2: "🔧 AI-aware but vendor-agnostic",
-                heroInfo3: "🎯 Engineering-focused optimization",
-                profileTitle: "Operations Systems Architect",
-                profileTagline: "I engineer solutions that scale, not dependencies that constrain. AI enhances analysis capabilities while maintaining full control and transparency.",
-                experienceTitle: "Technical Capabilities",
-                aboutText: "Years of systematic operations architecture work with technically-minded operators who need scalable solutions without vendor lock-in. AI provides analytical power while maintaining control.",
-                credential1: "Deep systems architecture experience",
-                credential2: "AI-aware, vendor-agnostic approach",
-                credential3: "Scalable framework engineering",
-                credential4: "Technical implementation without dependency creation",
-                servicesTitle: "Service Portfolio",
-                servicesSubtitle: "Engineered solutions with transparent AI enhancement",
-                service1Title: "System Architecture Review",
-                service1Duration: "30-minute diagnostic session",
-                service1Features: "<li>Current state architecture assessment</li><li>Growth potential identification (AI-assisted pattern analysis)</li><li>Written analysis within 24 hours</li><li>Optimization pathway recommendations</li>",
-                service1Cta: "Initialize",
-                service2Title: "Operations Optimization Audit",
-                service2Duration: "90-minute analysis + technical roadmap",
-                service2Features: "<li>Systematic potential analysis</li><li>Quantified optimization opportunities (AI-enhanced)</li><li>Performance enhancement frameworks</li><li>Structured implementation architecture</li>",
-                service2Cta: "Initialize",
-                service3Title: "Implementation Engineering",
-                service3Duration: "30-day structured optimization",
-                service3Features: "<li>Engineer solutions systematically</li><li>Deploy scalable systems + documentation</li><li>Develop team technical capabilities (AI-informed)</li><li>Structured 30-day performance review</li>",
-                service3Cta: "Initialize",
-                service4Title: "Fractional Operations Architecture",
-                service4Duration: "Ongoing systematic optimization",
-                service4Features: "<li>Dedicated fractional operations architect</li><li>Performance-based optimization support</li><li>Continuous systematic improvement (AI-assisted)</li><li>Long-term scalability partnership</li>",
-                service4Cta: "Initialize",
-                processTitle: "Methodology Framework",
-                processSubtitle: "Systematic approach to operational optimization and growth",
-                process1Title: "Analyze",
-                process2Title: "Model",
-                process3Title: "Architect",
-                process4Title: "Deploy",
-                processText1: "Systematic operational assessment using structured methodologies and performance data analysis, enhanced by AI pattern recognition.",
-                processText2: "Quantitative analysis to identify optimization opportunities and growth potential vectors, using AI-enhanced modeling.",
-                processText3: "Evidence-based solutions with clear performance metrics, timelines, and success criteria, informed by AI analysis.",
-                processText4: "Structured implementation with monitoring, iteration, and continuous optimization protocols.",
-                fitGoodTitle: "Technical Match Criteria:",
-                fitGood1: "Technical operator seeking systematic optimization",
-                fitGood2: "Complex operational architecture requiring scaling",
-                fitGood3: "AI-curious but vendor-lock-in averse",
-                fitGood4: "Values engineering approach over sales pitches",
-                fitGood5: "Ready to invest in scalable, systematic solutions",
-                fitGood6: "Needs technical depth without unnecessary complexity",
-                fitBadTitle: "Technical Mismatch Indicators:",
-                fitBad1: "Simple operational requirements",
-                fitBad2: "Seeking AI vendor or software sales relationships",
-                fitBad3: "Expecting plug-and-play solutions without engineering",
-                fitBad4: "Systems already architected optimally",
-                fitBad5: "Budget constraints limiting technical investment",
-                fitBad6: "Preference for vendor-supported over custom solutions",
-                aboutTitle: "Technical Profile",
-                faqTitle: "Technical Assessment",
-                faq1Question: "How do you evaluate engagement compatibility?",
-                faq1Answer: "Technical assessment evaluates operational architecture, growth potential, and optimization opportunities to determine engagement fit. You'll see my AI-enhanced analysis methodology in action.",
-                faq2Question: "What's your target client profile?",
-                faq2Answer: "I work with technically-minded operators who need systematic approaches to maximize operational potential without vendor lock-in or AI hype.",
-                faq3Question: "What's your approach to tools and technical requirements?",
-                faq3Answer: "Tool-agnostic approach focused on optimal solutions. I integrate AI where it adds measurable value, never where it creates unnecessary dependency.",
-                faq4Question: "What performance metrics should I expect?",
-                faq4Answer: "System optimizations typically show measurable impact as we implement, with sustained performance improvements developing systematically.",
-                ctaHeadline: "Engineer Better Growth",
-                ctaSubheadline: "Deploy systematic solutions that maximize operational potential",
-                ctaPrimary: "Book a Session",
-                ctaSecondary: "Technical Inquiry"
             }
         };
 
         // Apply tone function with smooth animations
         function applyTone(toneName) {
             const content = toneContent[toneName];
-            if (!content) return;
+            if (!content) {
+                console.warn("Tone not found:", toneName);
+                applyTone('straightforward'); 
+                return;
+            }
 
-            // Update all content elements
-            const elements = [
-                { id: 'hero-headline', content: content.headline },
-                { id: 'hero-subheadline', content: content.subheadline },
-                { id: 'hero-cta', content: content.heroCta },
-                { id: 'hero-info-1', content: content.heroInfo1 },
-                { id: 'hero-info-2', content: content.heroInfo2 },
-                { id: 'hero-info-3', content: content.heroInfo3 },
-                { id: 'profile-title', content: content.profileTitle },
-                { id: 'profile-tagline', content: content.profileTagline },
-                { id: 'experience-title', content: content.experienceTitle },
-                { id: 'about-text', content: content.aboutText },
-                { id: 'credential-1', content: content.credential1 },
-                { id: 'credential-2', content: content.credential2 },
-                { id: 'credential-3', content: content.credential3 },
-                { id: 'credential-4', content: content.credential4 },
-                { id: 'services-title', content: content.servicesTitle },
-                { id: 'services-subtitle', content: content.servicesSubtitle },
-                { id: 'service1-title', content: content.service1Title },
-                { id: 'service1-duration', content: content.service1Duration },
-                { id: 'service1-features', content: content.service1Features, isHTML: true },
-                { id: 'service1-cta', content: content.service1Cta },
-                { id: 'service2-title', content: content.service2Title },
-                { id: 'service2-duration', content: content.service2Duration },
-                { id: 'service2-features', content: content.service2Features, isHTML: true },
-                { id: 'service2-cta', content: content.service2Cta },
-                { id: 'service3-title', content: content.service3Title },
-                { id: 'service3-duration', content: content.service3Duration },
-                { id: 'service3-features', content: content.service3Features, isHTML: true },
-                { id: 'service3-cta', content: content.service3Cta },
-                { id: 'service4-title', content: content.service4Title },
-                { id: 'service4-duration', content: content.service4Duration },
-                { id: 'service4-features', content: content.service4Features, isHTML: true },
-                { id: 'service4-cta', content: content.service4Cta },
-                { id: 'process-title', content: content.processTitle },
-                { id: 'process-subtitle', content: content.processSubtitle },
-                { id: 'process1-title', content: content.process1Title },
-                { id: 'process2-title', content: content.process2Title },
-                { id: 'process3-title', content: content.process3Title },
-                { id: 'process4-title', content: content.process4Title },
-                { id: 'process-text1', content: content.processText1 },
-                { id: 'process-text2', content: content.processText2 },
-                { id: 'process-text3', content: content.processText3 },
-                { id: 'process-text4', content: content.processText4 },
-                { id: 'fit-good-title', content: content.fitGoodTitle },
-                { id: 'fit-good-1', content: content.fitGood1 },
-                { id: 'fit-good-2', content: content.fitGood2 },
-                { id: 'fit-good-3', content: content.fitGood3 },
-                { id: 'fit-good-4', content: content.fitGood4 },
-                { id: 'fit-good-5', content: content.fitGood5 },
-                { id: 'fit-good-6', content: content.fitGood6 },
-                { id: 'fit-bad-title', content: content.fitBadTitle },
-                { id: 'fit-bad-1', content: content.fitBad1 },
-                { id: 'fit-bad-2', content: content.fitBad2 },
-                { id: 'fit-bad-3', content: content.fitBad3 },
-                { id: 'fit-bad-4', content: content.fitBad4 },
-                { id: 'fit-bad-5', content: content.fitBad5 },
-                { id: 'fit-bad-6', content: content.fitBad6 },
-                { id: 'about-title', content: content.aboutTitle },
-                { id: 'faq-title', content: content.faqTitle },
-                { id: 'faq-1-question', content: content.faq1Question },
-                { id: 'faq-1-answer', content: content.faq1Answer },
-                { id: 'faq-2-question', content: content.faq2Question },
-                { id: 'faq-2-answer', content: content.faq2Answer },
-                { id: 'faq-3-question', content: content.faq3Question },
-                { id: 'faq-3-answer', content: content.faq3Answer },
-                { id: 'faq-4-question', content: content.faq4Question },
-                { id: 'faq-4-answer', content: content.faq4Answer },
-                { id: 'cta-headline', content: content.ctaHeadline },
-                { id: 'cta-subheadline', content: content.ctaSubheadline },
-                { id: 'cta-primary', content: content.ctaPrimary },
-                { id: 'cta-secondary', content: content.ctaSecondary }
+            const elementsToUpdate = [
+                { id: 'hero-headline', key: 'headline' },
+                { id: 'hero-subheadline', key: 'subheadline' },
+                { id: 'hero-cta', key: 'heroCta' },
+                { id: 'hero-info-1', key: 'heroInfo1' },
+                { id: 'hero-info-2', key: 'heroInfo2' },
+                { id: 'hero-info-3', key: 'heroInfo3' },
+                { id: 'profile-title', key: 'profileTitle' },
+                { id: 'profile-tagline', key: 'profileTagline' },
+                { id: 'experience-title', key: 'experienceTitle' },
+                { id: 'about-text', key: 'aboutText' },
+                { id: 'credential-1', key: 'credential1' },
+                { id: 'credential-2', key: 'credential2' },
+                { id: 'credential-3', key: 'credential3' },
+                { id: 'credential-4', key: 'credential4' },
+                { id: 'services-title', key: 'servicesTitle' },
+                { id: 'services-subtitle', key: 'servicesSubtitle' },
+                { id: 'service1-title', key: 'service1Title' },
+                { id: 'service1-duration', key: 'service1Duration' },
+                { id: 'service1-features', key: 'service1Features', isHTML: true },
+                { id: 'service1-cta', key: 'service1Cta' },
+                { id: 'service2-title', key: 'service2Title' },
+                { id: 'service2-duration', key: 'service2Duration' },
+                { id: 'service2-features', key: 'service2Features', isHTML: true },
+                { id: 'service2-cta', key: 'service2Cta' },
+                { id: 'service3-title', key: 'service3Title' },
+                { id: 'service3-duration', key: 'service3Duration' },
+                { id: 'service3-features', key: 'service3Features', isHTML: true },
+                { id: 'service3-cta', key: 'service3Cta' },
+                { id: 'service4-title', key: 'service4Title' },
+                { id: 'service4-duration', key: 'service4Duration' },
+                { id: 'service4-features', key: 'service4Features', isHTML: true },
+                { id: 'service4-cta', key: 'service4Cta' },
+                { id: 'process-title', key: 'processTitle' },
+                { id: 'process-subtitle', key: 'processSubtitle' },
+                { id: 'process1-title', key: 'process1Title' },
+                { id: 'process2-title', key: 'process2Title' },
+                { id: 'process3-title', key: 'process3Title' },
+                { id: 'process4-title', key: 'process4Title' },
+                { id: 'process-text1', key: 'processText1' },
+                { id: 'process-text2', key: 'processText2' },
+                { id: 'process-text3', key: 'processText3' },
+                { id: 'process-text4', key: 'processText4' },
+                { id: 'fit-good-title', key: 'fitGoodTitle' },
+                { id: 'fit-good-1', key: 'fitGood1' },
+                { id: 'fit-good-2', key: 'fitGood2' },
+                { id: 'fit-good-3', key: 'fitGood3' },
+                { id: 'fit-good-4', key: 'fitGood4' },
+                { id: 'fit-good-5', key: 'fitGood5' },
+                { id: 'fit-good-6', key: 'fitGood6' },
+                { id: 'fit-bad-title', key: 'fitBadTitle' },
+                { id: 'fit-bad-1', key: 'fitBad1' },
+                { id: 'fit-bad-2', key: 'fitBad2' },
+                { id: 'fit-bad-3', key: 'fitBad3' },
+                { id: 'fit-bad-4', key: 'fitBad4' },
+                { id: 'fit-bad-5', key: 'fitBad5' },
+                { id: 'fit-bad-6', key: 'fitBad6' },
+                { id: 'about-title', key: 'aboutTitle' },
+                { id: 'faq-title', key: 'faqTitle' },
+                { id: 'faq-1-question', key: 'faq1Question', isQuestion: true }, 
+                { id: 'faq-1-answer', key: 'faq1Answer', isAnswer: true },
+                { id: 'faq-2-question', key: 'faq2Question', isQuestion: true },
+                { id: 'faq-2-answer', key: 'faq2Answer', isAnswer: true },
+                { id: 'faq-3-question', key: 'faq3Question', isQuestion: true },
+                { id: 'faq-3-answer', key: 'faq3Answer', isAnswer: true },
+                { id: 'faq-4-question', key: 'faq4Question', isQuestion: true },
+                { id: 'faq-4-answer', key: 'faq4Answer', isAnswer: true },
+                { id: 'cta-headline', key: 'ctaHeadline' },
+                { id: 'cta-subheadline', key: 'ctaSubheadline' },
+                { id: 'cta-primary', key: 'ctaPrimary' },
+                { id: 'cta-secondary', key: 'ctaSecondary' }
             ];
 
-            elements.forEach(({ id, content: text, isHTML }) => {
+            elementsToUpdate.forEach(({ id, key, isHTML, isQuestion, isAnswer }) => {
                 const element = document.getElementById(id);
-                if (element) {
-                    element.style.opacity = '0.6';
+                if (element && content[key] !== undefined) {
+                    element.style.opacity = '0.6'; 
                     element.style.transform = 'translateY(4px)';
                     
                     setTimeout(() => {
                         if (isHTML) {
-                            element.innerHTML = text;
-                        } else {
-                            element.textContent = text;
+                            element.innerHTML = content[key];
+                        } else if (isQuestion) {
+                            element.childNodes[0].nodeValue = content[key] + " "; 
+                        } else if (isAnswer) {
+                            element.textContent = content[key];
+                        }
+                        else {
+                            element.textContent = content[key];
                         }
                         element.style.opacity = '1';
                         element.style.transform = 'translateY(0)';
-                    }, 150);
+                    }, 150); 
+                } else if (element && content[key] === undefined) {
+                    // console.warn(`Content key "${key}" not found for element ID "${id}" in tone "${toneName}". Element will not be updated.`);
                 }
             });
-
-            // Apply theme
             document.documentElement.setAttribute('data-theme', toneName);
         }
 
-        // Initialize functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Tone selector
+            const toneSelector = document.getElementById('toneSelector');
             const toneButtons = document.querySelectorAll('.tone-btn');
+            const SCROLL_THRESHOLD = 100; 
+            let isMobile = window.innerWidth <= 768;
+            
+            function handleScroll() {
+                if (isMobile) { 
+                    toneSelector.classList.remove('minimized');
+                    return;
+                }
+                if (window.scrollY > SCROLL_THRESHOLD) {
+                    if (!toneSelector.classList.contains('minimized')) {
+                        toneSelector.classList.add('minimized');
+                    }
+                } else {
+                    if (toneSelector.classList.contains('minimized')) {
+                        toneSelector.classList.remove('minimized');
+                    }
+                }
+            }
+
+            function checkMobile() {
+                isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    toneSelector.classList.remove('minimized'); 
+                    toneSelector.style.position = 'static'; 
+                } else {
+                    toneSelector.style.position = 'sticky'; 
+                    handleScroll(); 
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', checkMobile);
+            
+            const defaultToneButton = document.querySelector('.tone-btn[data-theme="straightforward"]');
+            document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active')); 
+            if (defaultToneButton) {
+                defaultToneButton.classList.add('active');
+                applyTone('straightforward');
+            }
+            
+            checkMobile(); 
+
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     toneButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
                     const tone = this.dataset.theme;
                     if (tone) {
                         applyTone(tone);
@@ -1655,34 +1629,31 @@
                 });
             });
 
-            // FAQ functionality
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     const faqItem = this.parentElement;
                     const wasActive = faqItem.classList.contains('active');
                     
-                    // Close all FAQ items
-                    document.querySelectorAll('.faq-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Open clicked item if it wasn't already active
                     if (!wasActive) {
                         faqItem.classList.add('active');
+                    } else {
+                        faqItem.classList.remove('active'); 
                     }
                 });
             });
 
-            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    if (href && href !== '#') {
+                    if (href && href.startsWith('#') && href.length > 1) { 
                         e.preventDefault();
-                        const target = document.querySelector(href);
-                        if (target) {
-                            const offsetTop = target.offsetTop - 100;
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            let offsetTop = targetElement.offsetTop;
+                            if (!isMobile && toneSelector) { 
+                                offsetTop -= (toneSelector.offsetHeight + 10); 
+                            }
                             window.scrollTo({
                                 top: offsetTop,
                                 behavior: 'smooth'
