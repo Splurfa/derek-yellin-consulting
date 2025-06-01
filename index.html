@@ -1,4 +1,4 @@
-r<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +15,9 @@ r<!DOCTYPE html>
 
         :root {
             /* Base Design System */
-            --primary: #2563eb; /* Straightforward theme default */
-            --primary-dark: #1d4ed8;
-            --accent: #06b6d4;
+            --primary: #059669; /* UPDATED DEFAULT: Simple theme */
+            --primary-dark: #047857;
+            --accent: #06b6d4; 
             --accent-light: #22d3ee;
             --surface: #ffffff;
             --surface-secondary: #f8fafc;
@@ -126,7 +126,7 @@ r<!DOCTYPE html>
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 100; /* Tone selector bar is on top of everything */
+            z-index: 100;
             backdrop-filter: blur(8px); 
             transition: padding 0.3s ease, min-height 0.3s ease; 
             padding: var(--space-4) 0; 
@@ -269,7 +269,7 @@ r<!DOCTYPE html>
             transform: scale(0); 
             opacity: 0; 
             pointer-events: none; 
-            z-index: 70; /* ADJUSTED: Above content (60), below tone-selector (100) */
+            z-index: 70;
             transition: background-color 0.3s ease; 
         }
 
@@ -288,20 +288,17 @@ r<!DOCTYPE html>
             }
         }
         
-        /* Main Content Sections Z-indexing */
         .hero, .section, .final-cta {
             position: relative; 
-            z-index: 60; /* Ensures content is below wave (70) and tone-selector (100) */
+            z-index: 60; 
         }
         
         /* Hero Section Styles */
         .hero {
             background: var(--gradient-primary);
             color: var(--text-inverse);
-            /* position: relative; /* Already set above */
             overflow: hidden;   
             padding: var(--space-24) 0 var(--space-20);
-            /* z-index: 60; /* Already set above */
         }
         
         [data-theme="simple"] .hero,
@@ -389,8 +386,6 @@ r<!DOCTYPE html>
         /* General Section Styles */
         .section {
             padding: var(--space-20) 0;
-            /* position: relative; /* Already set above */
-            /* z-index: 60; /* Already set above */
         }
         .services { background: var(--surface-secondary); }
         .fit-section { background: var(--surface-secondary); }
@@ -814,10 +809,8 @@ r<!DOCTYPE html>
             background: var(--gradient-primary);
             color: var(--text-inverse);
             text-align: center;
-            /* position: relative; /* Already set above */
             overflow: hidden;   
             padding: var(--space-20) 0;
-            /* z-index: 60; /* Already set above */
         }
         [data-theme="simple"] .final-cta,
         [data-theme="supportive"] .final-cta {
@@ -894,7 +887,7 @@ r<!DOCTYPE html>
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
         }
 
-        /* Mobile Responsive Adjustments - Unchanged */
+        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
             .tone-selector {
                 background: var(--surface-secondary); 
@@ -992,13 +985,13 @@ r<!DOCTYPE html>
                     <p>This page will adapt to the option you select.</p>
                 </div>
                 <div class="tone-options">
-                    <button class="tone-btn" data-theme="simple">
+                    <button class="tone-btn active" data-theme="simple">
                         <span class="emoji">🌱</span> <span class="tone-btn-text">Start from scratch.</span>
                     </button>
                     <button class="tone-btn" data-theme="supportive">
                         <span class="emoji">🤝</span> <span class="tone-btn-text">Guide me gently.</span>
                     </button>
-                    <button class="tone-btn active" data-theme="straightforward"> <span class="emoji">📊</span> <span class="tone-btn-text">Just the facts.</span>
+                    <button class="tone-btn" data-theme="straightforward"> <span class="emoji">📊</span> <span class="tone-btn-text">Just the facts.</span>
                     </button>
                     <button class="tone-btn" data-theme="tactical">
                         <span class="emoji">🚀</span> <span class="tone-btn-text">Let's get tactical.</span>
@@ -1010,72 +1003,60 @@ r<!DOCTYPE html>
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-headline">A Clearer Way to Manage Your Work.</h1>
-                <p id="hero-subheadline">I help you figure out your work problems using AI as a thinking tool.</p>
-                <a href="#contact" class="hero-cta" id="hero-cta">Let's Figure This Out</a>
+                <h1 id="hero-headline">A Simpler Way to Work.</h1>
+                <p id="hero-subheadline">When work feels overwhelming, I help you find clarity and make your tasks easier.</p>
+                <a href="#services" class="hero-cta" id="hero-cta">Let's Talk</a>
                 <div class="hero-info">
-                    <span id="hero-info-1">🧠 AI-augmented thinking partner</span>
-                    <span id="hero-info-2">🛠️ No tech skills required</span>
-                    <span id="hero-info-3">✨ Experience the magic firsthand</span>
+                    <span id="hero-info-1">🌱 Gentle guidance</span>
+                    <span id="hero-info-2">💡 Simple, clear ideas (AI-enhanced)</span>
+                    <span id="hero-info-3">🤝 Friendly, down-to-earth approach</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section services">
+    <section class="section services" id="services">
         <div class="container">
             <div class="section-header">
-                 <h2 class="section-title" id="services-title">How We Can Work Together</h2>
-                <p class="section-subtitle" id="services-subtitle">Different ways to get help with your work</p>
+                 <h2 class="section-title" id="services-title">Ways I Can Help You Find Clarity</h2>
+                <p class="section-subtitle" id="services-subtitle">Gentle steps to feel more in control</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <h3 id="service1-title">Discovery Session</h3>
-                    <div class="service-duration" id="service1-duration">30 minutes of AI-augmented conversation</div>
+                    <div class="service-duration" id="service1-duration">30 minutes of easy conversation</div>
                     <ul class="service-features" id="service1-features">
-                        <li>I'll show you how AI helps me understand your situation</li>
-                        <li>We'll use AI to spot patterns you might not see</li>
-                        <li>You'll experience the thinking process, not just hear about it</li>
-                        <li>Written insights within 24 hours</li>
+                        <li>We'll talk about what's making work hard for you</li><li>You'll see how I use AI to understand your situation</li><li>Experience a new way of thinking through problems</li><li>Get a simple summary within 24 hours</li>
                     </ul>
                     <div class="service-price">Free <small>for referrals | $25 new clients</small></div>
-                    <a href="https://calendly.com/derek-yellin?source=discovery-session" class="cta-btn" id="service1-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=discovery-session" class="cta-btn" id="service1-cta">Let's Chat</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service2-title">Strategy Session</h3>
-                    <div class="service-duration" id="service2-duration">90 minutes + comprehensive analysis</div>
+                    <div class="service-duration" id="service2-duration">90 minutes + a simple guide</div>
                     <ul class="service-features" id="service2-features">
-                        <li>Full analysis using AI to see the whole picture</li>
-                        <li>Live demonstration of AI problem-solving</li>
-                        <li>Clear recommendations based on what AI finds</li>
-                        <li>Next steps you can actually implement</li>
+                        <li>Calm look at how your work is set up now</li><li>Find simpler ways to do things</li><li>Spot chances to make work easier</li><li>Get a straightforward guide you can use</li>
                     </ul>
                     <div class="service-price">$295</div>
-                    <a href="https://calendly.com/derek-yellin?source=strategy-session" class="cta-btn secondary" id="service2-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=strategy-session" class="cta-btn secondary" id="service2-cta">Let's Chat</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service3-title">Monthly Partnership</h3>
-                    <div class="service-duration" id="service3-duration">30 days of regular check-ins</div>
+                    <div class="service-duration" id="service3-duration">30 days of friendly support</div>
                     <ul class="service-features" id="service3-features">
-                        <li>Build sustainable systems together using AI</li>
-                        <li>I handle the AI complexity, you get the results</li>
-                        <li>See how AI thinking becomes part of your routine</li>
-                        <li>Learn to spot when AI could help</li>
+                        <li>Create easier ways of doing things together</li><li>Build new habits with friendly guidance</li><li>See how AI can make your work lighter</li><li>Regular check-ins to make sure it's working</li>
                     </ul>
                     <div class="service-price">$2,500</div>
-                    <a href="https://calendly.com/derek-yellin?source=monthly-partnership" class="cta-btn secondary" id="service3-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=monthly-partnership" class="cta-btn secondary" id="service3-cta">Let's Chat</a>
                 </div>
                 <div class="service-card">
                     <h3 id="service4-title">Ongoing Partnership</h3>
-                    <div class="service-duration" id="service4-duration">Whatever timeline makes sense</div>
+                    <div class="service-duration" id="service4-duration">Whatever timeline feels right for you</div>
                     <ul class="service-features" id="service4-features">
-                        <li>Fractional AI-augmented operations support</li>
-                        <li>Ongoing access to AI-powered insights</li>
-                        <li>Help your team experience better ways of working</li>
-                        <li>Long-term partnership as your needs evolve</li>
+                        <li>Your go-to person for operational ease</li><li>Continued support as you feel more confident</li><li>Keep finding easier ways (AI-assisted insights)</li><li>Long-term help, adapting to your needs</li>
                     </ul>
                     <div class="service-price">Custom arrangement</div>
-                    <a href="https://calendly.com/derek-yellin?source=ongoing-partnership" class="cta-btn secondary" id="service4-cta">Experience This</a>
+                    <a href="https://calendly.com/derek-yellin?source=ongoing-partnership" class="cta-btn secondary" id="service4-cta">Let's Chat</a>
                 </div>
             </div>
         </div>
@@ -1084,17 +1065,611 @@ r<!DOCTYPE html>
     <section class="section process">
         <div class="container">
             <div class="section-header">
-                 <h2 class="section-title" id="process-title">How This Actually Works</h2>
-                <p class="section-subtitle" id="process-subtitle">AI-augmented thinking in practice</p>
+                 <h2 class="section-title" id="process-title">Our Simple Process</h2>
+                <p class="section-subtitle" id="process-subtitle">Easy steps, no confusing jargon</p>
             </div>
             <div class="process-grid">
                  <div class="process-step">
                     <div class="process-icon">👂</div>
-                    <h3 id="process1-title">Listen & Process</h3>
-                    <p id="process-text1">We'll talk about what's overwhelming you while AI helps me understand the deeper patterns and possibilities.</p>
+                    <h3 id="process1-title">We Talk</h3>
+                    <p id="process-text1">We'll chat about what's on your mind. No pressure, just a conversation.</p>
                 </div>
                 <div class="process-step">
                     <div class="process-icon">🧠</div>
-                    <h3 id="process2-title">Think Together</h3>
-                    <p id="process-text2">You'll see AI helping us break down complex problems into manageable pieces in real-time.</p>
+                    <h3 id="process2-title">We Explore</h3>
+                    <p id="process-text2">I'll help you see things in a new light. You'll experience how smart tools can help us think clearly together.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">💡</div>
+                    <h3 id="process3-title">We Find Ideas</h3>
+                    <p id="process-text3">I'll share some simple ideas that might help, based on what we discover.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">🚀</div>
+                    <h3 id="process4-title">We Support</h3>
+                    <p id="process-text4">If you like, we can work together to make those ideas a reality in a way that feels good to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fit-section">
+        <div class="container">
+            <div class="section-header">
+                 <h2 class="section-title">Is This Right for You?</h2>
+            </div>
+            <div class="fit-grid">
+                <div class="fit-card good">
+                     <h3 id="fit-good-title">This IS for you if...</h3>
+                    <ul class="fit-list" id="fit-good-list">
+                        <li id="fit-good-1">You feel swamped by daily tasks</li>
+                        <li id="fit-good-2">You sense things could be easier, but you're unsure how</li>
+                        <li id="fit-good-3">You want simple improvements that feel manageable</li>
+                        <li id="fit-good-4">You like working with someone who explains things clearly</li>
+                        <li id="fit-good-5">You're curious about new tools but want to keep it simple</li>
+                        <li id="fit-good-6">You'd like a helper to think things through with you</li>
+                    </ul>
+                </div>
+                <div class="fit-card not-good"> 
+                    <h3 id="fit-bad-title">This is NOT for you if...</h3>
+                    <ul class="fit-list" id="fit-bad-list">
+                        <li id="fit-bad-1">Your work is already super organized and runs smoothly with fancy systems.</li>
+                        <li id="fit-bad-2">You'd rather not use new computer tools or AI helpers.</li>
+                        <li id="fit-bad-3">You want someone to just give you the answers without talking it through.</li>
+                        <li id="fit-bad-4">You're part of a very big company needing huge changes everywhere.</li>
+                        <li id="fit-bad-5">You really don't want any ideas that come from AI or smart tools.</li>
+                        <li id="fit-bad-6">Everything at work is already easy and you have no problems.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about">
+        <div class="container">
+            <div class="section-header">
+                 <h2 class="section-title" id="about-title">My Focus: Your Peace of Mind</h2>
+            </div>
+            <div class="about-content">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://raw.githubusercontent.com/Splurfa/website-assets/main/derek-profile.jpeg" alt="Derek Yellin" onerror="this.style.display='none'; this.parentElement.innerHTML='DY';">
+                    </div>
+                    <div class="profile-info">
+                         <h3>Derek Yellin</h3>
+                        <p class="title" id="profile-title">Your Operations Helper</p>
+                        <div class="profile-tagline" id="profile-tagline">"I'm here to help you see new possibilities and find ease. Sometimes I use AI to think through problems—you'll see what that's like, simply."</div>
+                    </div>
+                </div>
                 
+                <h3 class="subsection-title" id="experience-title">My Approach</h3>
+                <p class="about-text" id="about-text">I've spent years helping people like you find simpler ways and take easy steps to feel more in control. I use smart tools (including AI) to spot patterns and possibilities you might not see on your own.</p>
+                
+                <div class="credentials">
+                     <div class="credential" id="credential-1">Real experience helping people feel less overwhelmed</div>
+                    <div class="credential" id="credential-2">Simple, practical solutions (AI-enhanced when helpful)</div>
+                    <div class="credential" id="credential-3">Focus on what actually helps you feel better</div>
+                    <div class="credential" id="credential-4">We work together; I'm here to support you</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="container">
+            <div class="section-header">
+                 <h2 class="section-title" id="faq-title">Your Questions Answered</h2>
+            </div>
+            <div class="faq-list">
+                 <div class="faq-item">
+                    <div class="faq-question" id="faq-1-question">
+                        How will I know if this can help me?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq-1-answer">In our first chat, we'll explore if this is a good fit. If not, I'll say so. You'll also experience what it's like when I use smart tools to think through problems with you, in a simple way.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" id="faq-2-question">
+                        What if I'm not a "business person"?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq-2-answer">That's perfectly okay. I help many individuals who are focused on their main work or passion, and just want the 'other stuff' to be less chaotic.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" id="faq-3-question">
+                        Do I need to be tech-savvy?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq-3-answer">Not at all. I handle any tools we use. You just bring your thoughts and experiences to our conversation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" id="faq-4-question">
+                        How soon will things feel easier?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq-4-answer">You'll start seeing new possibilities and feeling a bit more clarity from our very first conversation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <div class="final-cta-content">
+                 <h2 id="cta-headline">It's Time for a Simpler Way.</h2>
+                <p id="cta-subheadline">Let's start with a simple conversation about finding ease.</p>
+                <div class="cta-buttons">
+                    <a href="https://calendly.com/derek-yellin" class="cta-primary" id="cta-primary">Let's Talk</a>
+                    <a href="mailto:derek@yellin.consulting" class="cta-secondary" id="cta-secondary">Send a Message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tone-wave"></div> 
+
+    <script>
+        // Tone content variations
+        const toneContent = {
+            simple: { // 🌱 Start from scratch.
+                headline: "A Simpler Way to Work.",
+                subheadline: "When work feels overwhelming, I help you find clarity and make your tasks easier.",
+                heroCta: "Let's Talk",
+                heroInfo1: "🌱 Gentle guidance",
+                heroInfo2: "💡 Simple, clear ideas (AI-enhanced)",
+                heroInfo3: "🤝 Friendly, down-to-earth approach",
+                profileTitle: "Your Operations Helper",
+                profileTagline: "\"I'm here to help you see new possibilities and find ease. Sometimes I use AI to think through problems—you'll see what that's like, simply.\"",
+                experienceTitle: "My Approach",
+                aboutText: "I've spent years helping people like you find simpler ways and take easy steps to feel more in control. I use smart tools (including AI) to spot patterns and possibilities you might not see on your own.",
+                credential1: "Real experience helping people feel less overwhelmed",
+                credential2: "Simple, practical solutions (AI-enhanced when helpful)",
+                credential3: "Focus on what actually helps you feel better",
+                credential4: "We work together; I'm here to support you",
+                servicesTitle: "Ways I Can Help You Find Clarity",
+                servicesSubtitle: "Gentle steps to feel more in control",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of easy conversation",
+                service1Features: "<li>We'll talk about what's making work hard for you</li><li>You'll see how I use AI to understand your situation</li><li>Experience a new way of thinking through problems</li><li>Get a simple summary within 24 hours</li>",
+                service1Cta: "Let's Chat",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + a simple guide",
+                service2Features: "<li>Calm look at how your work is set up now</li><li>Find simpler ways to do things</li><li>Spot chances to make work easier</li><li>Get a straightforward guide you can use</li>",
+                service2Cta: "Let's Chat",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of friendly support",
+                service3Features: "<li>Create easier ways of doing things together</li><li>Build new habits with friendly guidance</li><li>See how AI can make your work lighter</li><li>Regular check-ins to make sure it's working</li>",
+                service3Cta: "Let's Chat",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Whatever timeline feels right for you",
+                service4Features: "<li>Your go-to person for operational ease</li><li>Continued support as you feel more confident</li><li>Keep finding easier ways (AI-assisted insights)</li><li>Long-term help, adapting to your needs</li>",
+                service4Cta: "Let's Chat",
+                processTitle: "Our Simple Process",
+                processSubtitle: "Easy steps, no confusing jargon",
+                process1Title: "We Talk",
+                process2Title: "We Explore",
+                process3Title: "We Find Ideas",
+                process4Title: "We Support",
+                processText1: "We'll chat about what's on your mind. No pressure, just a conversation.",
+                processText2: "I'll help you see things in a new light. You'll experience how smart tools can help us think clearly together.",
+                processText3: "I'll share some simple ideas that might help, based on what we discover.",
+                processText4: "If you like, we can work together to make those ideas a reality in a way that feels good to you.",
+                fitGoodTitle: "This IS for you if...",
+                fitGoodList: "<li>You feel swamped by daily tasks</li><li>You sense things could be easier, but you're unsure how</li><li>You want simple improvements that feel manageable</li><li>You like working with someone who explains things clearly</li><li>You're curious about new tools but want to keep it simple</li><li>You'd like a helper to think things through with you</li>",
+                fitBadTitle: "This is NOT for you if...", 
+                fitBadList: "<li>Your work is already super organized and runs smoothly with fancy systems.</li><li>You'd rather not use new computer tools or AI helpers.</li><li>You want someone to just give you the answers without talking it through.</li><li>You're part of a very big company needing huge changes everywhere.</li><li>You really don't want any ideas that come from AI or smart tools.</li><li>Everything at work is already easy and you have no problems.</li>",
+                aboutTitle: "My Focus: Your Peace of Mind",
+                faqTitle: "Your Questions Answered",
+                faq1Question: "How will I know if this can help me?",
+                faq1Answer: "In our first chat, we'll explore if this is a good fit. If not, I'll say so. You'll also experience what it's like when I use smart tools to think through problems with you, in a simple way.",
+                faq2Question: "What if I'm not a \"business person\"?",
+                faq2Answer: "That's perfectly okay. I help many individuals who are focused on their main work or passion, and just want the 'other stuff' to be less chaotic.",
+                faq3Question: "Do I need to be tech-savvy?",
+                faq3Answer: "Not at all. I handle any tools we use. You just bring your thoughts and experiences to our conversation.",
+                faq4Question: "How soon will things feel easier?",
+                faq4Answer: "You'll start seeing new possibilities and feeling a bit more clarity from our very first conversation.",
+                ctaHeadline: "It's Time for a Simpler Way.", 
+                ctaSubheadline: "Let's start with a simple conversation about finding ease.",
+                ctaPrimary: "Let's Talk",
+                ctaSecondary: "Send a Message"
+            },
+            supportive: { // 🤝 Guide me gently.
+                headline: "Your Partner in Finding Clarity.",
+                subheadline: "When you feel stuck or unsure what to tackle first, I'm here to help you with your work problems and feel more confident.", 
+                heroCta: "Let's Explore Together",
+                heroInfo1: "🤝 Supportive guidance approach",
+                heroInfo2: "💡 AI-enhanced insights for clarity",
+                heroInfo3: "🌱 Partnership-minded collaboration",
+                profileTitle: "Your Partner in Clarity & Operations",
+                profileTagline: "\"I'm here to support your journey to operational ease, not push solutions you don't need. I use AI thoughtfully to see patterns and possibilities that might not be obvious.\"",
+                experienceTitle: "How I Support You",
+                aboutText: "I've spent years understanding the unique challenges people face with their operations and providing thoughtful, supportive guidance that actually works. Smart tools help me see what manual analysis might miss, but our partnership is always human-centered.",
+                credential1: "Deep experience with diverse operational challenges",
+                credential2: "Human-centered, supportive approach (AI-enhanced)",
+                credential3: "Partnership-focused collaboration",
+                credential4: "Implementation support and encouragement, not just advice",
+                servicesTitle: "Ways I Can Support Your Journey",
+                servicesSubtitle: "Choose the level of partnership that feels right",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of focused, supportive conversation",
+                service1Features: "<li>Understand your current situation and goals</li><li>Spot opportunities using AI to see patterns</li><li>Written insights and clear next steps</li><li>Supportive guidance tailored to your needs</li>",
+                service1Cta: "Book Session",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + a supportive roadmap",
+                service2Features: "<li>Thorough look at your current work setup</li><li>Find the best opportunities for improvement</li><li>Strategies for making work easier and more effective</li><li>Clear pathway for making changes that stick</li>",
+                service2Cta: "Book Session",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of collaborative development",
+                service3Features: "<li>Work together to build solutions that fit you</li><li>Develop sustainable systems with ongoing support</li><li>Help your team see new possibilities</li><li>Comprehensive follow-up and encouragement</li>",
+                service3Cta: "Book Session",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Flexible support as your needs evolve",
+                service4Features: "<li>Your dedicated fractional operations partner, here for you</li><li>Support focused on your well-being and effectiveness</li><li>Continuous optimization guidance (AI-assisted)</li><li>Strategic long-term partnership for sustained ease</li>",
+                service4Cta: "Book Session",
+                processTitle: "My Supportive Approach",
+                processSubtitle: "Thoughtful, step-by-step guidance tailored to your needs",
+                process1Title: "Understand",
+                process2Title: "Discover",
+                process3Title: "Guide",
+                process4Title: "Support",
+                processText1: "I take time to understand your unique situation and aspirations, using smart tools to see the full picture with you.",
+                processText2: "Together we figure out what's working and what could work better, with AI helping us spot things we might miss.",
+                processText3: "I offer tailored guidance based on your specific context and goals, informed by both experience and smart analysis.",
+                processText4: "I stay with you through implementation, providing support and encouragement as you build confidence and find more ease.",
+                fitGoodTitle: "This IS for you if...",
+                fitGoodList: "<li>You're looking for supportive guidance to navigate challenges</li><li>You manage operational tasks and seek a thoughtful partner</li><li>You value sustainable improvements over quick fixes</li><li>You want collaborative solutions tailored to your situation</li><li>You're ready to invest in meaningful, lasting positive change</li><li>You appreciate ongoing support through implementation</li>",
+                fitBadTitle: "This is NOT for you if...",
+                fitBadList: "<li>You've already developed highly effective and complex systems that serve you well.</li><li>You're more comfortable with traditional consulting methods and prefer to avoid AI.</li><li>You're looking for a consultant to provide solutions independently, rather than a collaborative thinking partner.</li><li>Your primary need is for extensive, large-scale changes across a large organization.</li><li>You have a strong preference against incorporating AI-driven insights into your process.</li><li>You feel your current ways of working are fully meeting your needs and you're not seeking improvements.</li>",
+                aboutTitle: "About Your Guide",
+                faqTitle: "Questions You Might Have",
+                faq1Question: "How will we know if we're a good fit?",
+                faq1Answer: "During our first conversation, we'll explore whether my supportive approach aligns with your goals. You'll also see how I use smart tools to enhance our thinking together.",
+                faq2Question: "What kinds of people do you support?",
+                faq2Answer: "I work with individuals, team leads, and managers who want thoughtful guidance in making their operations smoother and more supportive of their goals. This includes people in behavioral health, support roles, and anyone needing better systems.",
+                faq3Question: "Do you require technical expertise or sell software?",
+                faq3Answer: "I focus on practical solutions and support, not software sales. Technical expertise isn't required—just openness to new possibilities and experiencing how smart tools can enhance our work together.",
+                faq4Question: "What kind of timeline should I expect for positive changes?",
+                faq4Answer: "You'll typically see meaningful progress and feel more supported as we work together, with some insights emerging right away.",
+                ctaHeadline: "Begin Your Supportive Growth Journey.", 
+                ctaSubheadline: "Let's work together to make your work easier and more effective.",
+                ctaPrimary: "Book a Session",
+                ctaSecondary: "Send Your Questions"
+            },
+            straightforward: { // 📊 Just the facts.
+                headline: "A Clearer Way to Manage Your Work.",
+                subheadline: "I help you figure out your work problems using AI as a thinking tool.",
+                heroCta: "Let's Figure This Out",
+                heroInfo1: "🧠 AI-augmented thinking partner",
+                heroInfo2: "🛠️ No tech skills required",
+                heroInfo3: "✨ Experience the magic firsthand",
+                profileTitle: "AI-Augmented Operations Partner",
+                profileTagline: "\"I help you access AI's problem-solving power without becoming technical yourself.\"",
+                experienceTitle: "What Makes This Different",
+                aboutText: "I spend my days showing people how AI can untangle operational messes they thought were just part of life. This site was built with AI. Our calls use AI. That's the point.",
+                credential1: "Real experience with overwhelmed people (not just \"businesses\")",
+                credential2: "AI does the heavy thinking—you get the insights",
+                credential3: "See the magic happen during our actual conversation",
+                credential4: "No jargon, focusing on what you want to achieve",
+                servicesTitle: "How We Can Work Together",
+                servicesSubtitle: "Different ways to get help with your work",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of AI-augmented conversation",
+                service1Features: "<li>I'll show you how AI helps me understand your situation</li><li>We'll use AI to spot patterns you might not see</li><li>You'll experience the thinking process, not just hear about it</li><li>Written insights within 24 hours</li>",
+                service1Cta: "Experience This",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + comprehensive analysis",
+                service2Features: "<li>Full analysis using AI to see the whole picture</li><li>Live demonstration of AI problem-solving</li><li>Clear recommendations based on what AI finds</li><li>Next steps you can actually implement</li>",
+                service2Cta: "Experience This",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of regular check-ins",
+                service3Features: "<li>Build sustainable systems together using AI</li><li>I handle the AI complexity, you get the results</li><li>See how AI thinking becomes part of your routine</li><li>Learn to spot when AI could help</li>",
+                service3Cta: "Experience This",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Whatever timeline makes sense",
+                service4Features: "<li>Fractional AI-augmented operations support</li><li>Ongoing access to AI-powered insights</li><li>Help your team experience better ways of working</li><li>Long-term partnership as your needs evolve</li>",
+                service4Cta: "Experience This",
+                processTitle: "How This Actually Works",
+                processSubtitle: "AI-augmented thinking in practice",
+                process1Title: "Listen & Process",
+                process2Title: "Think Together",
+                process3Title: "Show Possibilities",
+                process4Title: "Build Together",
+                processText1: "We'll talk about what's overwhelming you while AI helps me understand the deeper patterns and possibilities.",
+                processText2: "You'll see AI helping us break down complex problems into manageable pieces in real-time.",
+                processText3: "I'll demonstrate how AI reveals options you might have considered, explained in normal language.",
+                processText4: "If it makes sense, we'll create solutions together—with AI doing the complex thinking so you don't have to.",
+                fitGoodTitle: "This IS for you if...",
+                fitGoodList: "<li>You feel overwhelmed by operational tasks that seem harder than they should be</li><li>You handle day-to-day chaos but sense there's a simpler way</li><li>You are curious about AI but want to keep things simple</li><li>You want someone to think through problems WITH you, offering a fresh perspective</li><li>You need effective systems, whatever your role or field</li><li>You're ready to see what AI-augmented thinking actually looks like</li>",
+                fitBadTitle: "This is NOT for you if...", 
+                fitBadList: "<li>You have well-established, sophisticated operational systems.</li><li>You prefer traditional consulting without an AI component.</li><li>You seek solutions without active participation in the thinking process.</li><li>Your needs are primarily for large, enterprise-level implementations.</li><li>You are looking to avoid AI insights entirely.</li><li>Your current organization and systems meet all your needs.</li>",
+                aboutTitle: "About This AI-Augmented Approach",
+                faqTitle: "Common Questions",
+                faq1Question: "How do I know if this AI approach will actually help me?",
+                faq1Answer: "In our first conversation, you'll experience it directly. No theory—you'll see AI helping us think through your actual situation.",
+                faq2Question: "What if I'm not a \"business person\"?",
+                faq2Answer: "Most of my clients focus on their core work, not \"business\" tasks. I work with behavioral health professionals, support staff, overwhelmed individuals—anyone dealing with operational chaos.",
+                faq3Question: "Do I need to understand AI or technology?",
+                faq3Answer: "Not at all. I handle the technical complexity. You just participate in the conversation and experience what AI-augmented thinking feels like.",
+                faq4Question: "How quickly will I see results?",
+                faq4Answer: "You'll experience the difference during our first conversation. Implementation depends on your situation, but the thinking clarity happens immediately.",
+                ctaHeadline: "Experience AI-Augmented Thinking.",
+                ctaSubheadline: "Let's tackle your operational chaos together",
+                ctaPrimary: "Let's Think This Through",
+                ctaSecondary: "Send Me Your Situation"
+            },
+            tactical: { // 🚀 Let's get tactical.
+                headline: "AI-Powered Operations Help.",
+                subheadline: "I help experienced operators get better results using AI-enhanced methods that actually work.",
+                heroCta: "Schedule Strategic Review",
+                heroInfo1: "🎯 Years of performance optimization",
+                heroInfo2: "🚀 Methods that get you better results",
+                heroInfo3: "📈 Results-driven execution",
+                profileTitle: "Operations Partner",
+                profileTagline: "\"I help you get better results using AI tools and methods.\"",
+                experienceTitle: "Experience & Results",
+                aboutText: "I've spent years working with experienced operators who need help that works. AI tools help me spot patterns I'd miss on my own, but the focus is always on results that matter to you.",
+                credential1: "Extensive high-performance operations experience",
+                credential2: "AI-enhanced methods that work",
+                credential3: "Getting things done in the real world",
+                credential4: "Focus on results that matter",
+                servicesTitle: "How We Can Work Together",
+                servicesSubtitle: "Methods that get you better results",
+                service1Title: "Discovery Session", 
+                service1Duration: "30 minutes of focused, high-level analysis",
+                service1Features: "<li>Quick evaluation of your current work challenges</li><li>AI-powered pattern recognition to spot opportunities</li><li>Clear action steps you can implement right away</li><li>Results-focused recommendations</li>",
+                service1Cta: "Execute",
+                service2Title: "Strategy Session", 
+                service2Duration: "90 minutes + comprehensive performance plan",
+                service2Features: "<li>Deep analysis of what's slowing you down</li><li>High-impact improvements AI helps identify</li><li>Advanced methods for better results</li><li>Clear timeline and measurable goals</li>",
+                service2Cta: "Execute",
+                service3Title: "Monthly Partnership", 
+                service3Duration: "30 days of focused, tactical execution",
+                service3Features: "<li>Systematic improvements focused on results</li><li>Build high-performing systems that last</li><li>Measurable improvements in how work gets done</li><li>Results-focused review and ongoing optimization</li>",
+                service3Cta: "Execute",
+                service4Title: "Ongoing Partnership", 
+                service4Duration: "Ongoing strategic performance partnership",
+                service4Features: "<li>Embedded fractional operations leadership</li><li>Performance-based engagements and shared success</li><li>Continuous optimization execution (AI-assisted)</li><li>Strategic scaling and competitive advantage partnership</li>",
+                service4Cta: "Execute",
+                processTitle: "How We Work Together",
+                processSubtitle: "Direct approach focused on getting you better results",
+                process1Title: "Evaluate",
+                process2Title: "Diagnose",
+                process3Title: "Optimize",
+                process4Title: "Scale",
+                processText1: "Rapid, data-informed operational assessment to identify high-impact opportunities and untapped potential, enhanced by AI analysis.",
+                processText2: "Figure out exactly where you can get better results using AI to spot what I'd miss on my own.",
+                processText3: "Use methods that work with clear goals and timelines, with AI helping us find the best approach.",
+                processText4: "Work with you to get it done, track what's working, and keep improving over time.",
+                fitGoodTitle: "This IS for you if...",
+                fitGoodList: "<li>You're an experienced operator looking for a fresh, AI-enhanced perspective to overcome persistent operational bottlenecks.</li><li>You lead a capable team and want to unlock new levels of efficiency or decision-making clarity through AI-augmented insights.</li><li>You value practical, results-driven strategies and are open to how AI-augmented thinking can provide a tactical edge.</li><li>You're ready to implement targeted actions, informed by AI-driven analysis, for measurable operational improvements.</li><li>You're committed to elevating your operational performance by integrating smarter, AI-assisted methods.</li><li>You seek a collaborative partner to help implement and refine AI-augmented processes for tangible results.</li>",
+                fitBadTitle: "This is NOT for you if...",
+                fitBadList: "<li>Your operations are already highly optimized with advanced, mature systems beyond the scope of a personalized AI-augmented thinking partner.</li><li>You're specifically seeking conventional consulting methodologies, excluding AI integration.</li><li>You require a turnkey solution delivered, rather than engaging in a co-creative problem-solving process.</li><li>Your scope involves enterprise-wide transformations requiring extensive resource deployment and large-scale system overhauls.</li><li>You've made a strategic decision to exclude AI-generated intelligence from your operational toolkit.</li><li>Your current operational framework is already achieving all desired outcomes and efficiencies without the need for an external AI-augmented perspective.</li>",
+                aboutTitle: "Experience & Results",
+                faqTitle: "Key Questions for Experienced Operators",
+                faq1Question: "How do you determine if we're a strategic fit?",
+                faq1Answer: "An initial assessment determines fit based on your operational sophistication, performance goals, and readiness for tactical action. You'll see how I use AI to enhance strategic and tactical analysis.",
+                faq2Question: "Who benefits most from your tactical approach?",
+                faq2Answer: "I work with experienced operators, leaders, and teams who want tactical expertise to maximize their operational potential, overcome plateaus, and scale effectively by integrating AI-augmented thinking.",
+                faq3Question: "What's your stance on specific tools or technical skills?",
+                faq3Answer: "I deploy whatever tools and methods drive results—sometimes AI, always practical and proven. Your team's existing skills are leveraged; the focus is on outcomes achieved through smarter processes, not complex tech implementations.",
+                faq4Question: "What kind of results timeline can be expected?",
+                faq4Answer: "You'll see better results as we work together, with improvements that build over time.",
+                ctaHeadline: "Maximize Your Performance Today.", 
+                ctaSubheadline: "Use methods that work to get better results faster.",
+                ctaPrimary: "Schedule Strategic Review",
+                ctaSecondary: "Strategic Inquiry"
+            }
+        };
+
+        function applyTone(toneName) {
+            document.documentElement.setAttribute('data-theme', toneName);
+
+            const content = toneContent[toneName];
+            if (!content) {
+                console.warn("Tone not found:", toneName);
+                return;
+            }
+
+            const elementsToUpdate = [
+                { id: 'hero-headline', key: 'headline' },
+                { id: 'hero-subheadline', key: 'subheadline' },
+                { id: 'hero-cta', key: 'heroCta' },
+                { id: 'hero-info-1', key: 'heroInfo1' },
+                { id: 'hero-info-2', key: 'heroInfo2' },
+                { id: 'hero-info-3', key: 'heroInfo3' },
+                { id: 'profile-title', key: 'profileTitle' },
+                { id: 'profile-tagline', key: 'profileTagline' },
+                { id: 'experience-title', key: 'experienceTitle' },
+                { id: 'about-text', key: 'aboutText' },
+                { id: 'credential-1', key: 'credential1' },
+                { id: 'credential-2', key: 'credential2' },
+                { id: 'credential-3', key: 'credential3' },
+                { id: 'credential-4', key: 'credential4' },
+                { id: 'services-title', key: 'servicesTitle' },
+                { id: 'services-subtitle', key: 'servicesSubtitle' },
+                { id: 'service1-title', key: 'service1Title' },
+                { id: 'service1-duration', key: 'service1Duration' },
+                { id: 'service1-features', key: 'service1Features', isHTML: true },
+                { id: 'service1-cta', key: 'service1Cta' },
+                { id: 'service2-title', key: 'service2Title' },
+                { id: 'service2-duration', key: 'service2Duration' },
+                { id: 'service2-features', key: 'service2Features', isHTML: true },
+                { id: 'service2-cta', key: 'service2Cta' },
+                { id: 'service3-title', key: 'service3Title' },
+                { id: 'service3-duration', key: 'service3Duration' },
+                { id: 'service3-features', key: 'service3Features', isHTML: true },
+                { id: 'service3-cta', key: 'service3Cta' },
+                { id: 'service4-title', key: 'service4Title' },
+                { id: 'service4-duration', key: 'service4Duration' },
+                { id: 'service4-features', key: 'service4Features', isHTML: true },
+                { id: 'service4-cta', key: 'service4Cta' },
+                { id: 'process-title', key: 'processTitle' },
+                { id: 'process-subtitle', key: 'processSubtitle' },
+                { id: 'process1-title', key: 'process1Title' },
+                { id: 'process2-title', key: 'process2Title' },
+                { id: 'process3-title', key: 'process3Title' },
+                { id: 'process4-title', key: 'process4Title' },
+                { id: 'process-text1', key: 'processText1' },
+                { id: 'process-text2', key: 'processText2' },
+                { id: 'process-text3', key: 'processText3' },
+                { id: 'process-text4', key: 'processText4' },
+                { id: 'fit-good-title', key: 'fitGoodTitle' },
+                { id: 'fit-good-list', key: 'fitGoodList', isHTML: true },
+                { id: 'fit-bad-title', key: 'fitBadTitle' }, 
+                { id: 'fit-bad-list', key: 'fitBadList', isHTML: true },
+                { id: 'about-title', key: 'aboutTitle' },
+                { id: 'faq-title', key: 'faqTitle' },
+                { id: 'faq-1-question', key: 'faq1Question', isQuestion: true }, 
+                { id: 'faq-1-answer', key: 'faq1Answer', isAnswer: true },
+                { id: 'faq-2-question', key: 'faq2Question', isQuestion: true },
+                { id: 'faq-2-answer', key: 'faq2Answer', isAnswer: true },
+                { id: 'faq-3-question', key: 'faq3Question', isQuestion: true },
+                { id: 'faq-3-answer', key: 'faq3Answer', isAnswer: true },
+                { id: 'faq-4-question', key: 'faq4Question', isQuestion: true },
+                { id: 'faq-4-answer', key: 'faq4Answer', isAnswer: true },
+                { id: 'cta-headline', key: 'ctaHeadline' },
+                { id: 'cta-subheadline', key: 'ctaSubheadline' },
+                { id: 'cta-primary', key: 'ctaPrimary' },
+                { id: 'cta-secondary', key: 'ctaSecondary' }
+            ];
+
+            elementsToUpdate.forEach(({ id, key, isHTML, isQuestion, isAnswer }) => {
+                const element = document.getElementById(id);
+                if (element && content[key] !== undefined) {
+                    element.style.opacity = '0.6'; 
+                    element.style.transform = 'translateY(4px)';
+                    
+                    setTimeout(() => {
+                        if (isHTML) {
+                            element.innerHTML = content[key];
+                        } else if (isQuestion) {
+                            const toggleSpan = element.querySelector('.faq-toggle');
+                            element.childNodes[0].nodeValue = content[key] + " "; 
+                            if(toggleSpan) element.appendChild(toggleSpan);
+                        } else if (isAnswer) {
+                             element.querySelector('p') ? element.querySelector('p').textContent = content[key] : element.textContent = content[key];
+                        }
+                        else {
+                            element.textContent = content[key];
+                        }
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 150); 
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const toneSelectorBar = document.getElementById('toneSelector'); 
+            const toneButtons = document.querySelectorAll('.tone-btn');
+            const waveElement = document.querySelector('.tone-wave'); 
+            const SCROLL_THRESHOLD = 100; 
+            
+            function handleScroll() {
+                if (window.scrollY > SCROLL_THRESHOLD) {
+                    if (!toneSelectorBar.classList.contains('minimized')) {
+                        toneSelectorBar.classList.add('minimized');
+                    }
+                } else {
+                    if (toneSelectorBar.classList.contains('minimized')) {
+                        toneSelectorBar.classList.remove('minimized');
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            
+            // CHANGE 1: Default tone is now 'simple'
+            const defaultToneButton = document.querySelector('.tone-btn[data-theme="simple"]');
+            if (defaultToneButton) {
+                // The 'active' class is now set in the HTML, so we just need to apply the content
+                applyTone('simple'); 
+            } 
+
+            toneButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.classList.contains('active')) return; // Do nothing if already active
+
+                    toneButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.remove('faded'); 
+                    });
+                    this.classList.add('active');
+                    toneButtons.forEach(otherBtn => {
+                        if (otherBtn !== this) {
+                            otherBtn.classList.add('faded');
+                        }
+                    });
+
+                    const emoji = this.querySelector('.emoji');
+                    if (emoji) {
+                        emoji.classList.add('pulsing-animation');
+                        setTimeout(() => emoji.classList.remove('pulsing-animation'), 500); 
+                    }
+
+                    const tone = this.dataset.theme;
+                    if (tone) {
+                        applyTone(tone); 
+                    }
+                    
+                    if (waveElement && toneSelectorBar) {
+                        const rect = toneSelectorBar.getBoundingClientRect(); 
+                        const waveInitialSize = parseFloat(getComputedStyle(waveElement).width); 
+
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+
+                        waveElement.style.top = (centerY - waveInitialSize / 2) + 'px';
+                        waveElement.style.left = (centerX - waveInitialSize / 2) + 'px';
+                        
+                        waveElement.classList.remove('broadcasting-animation'); 
+                        void waveElement.offsetWidth;
+                        waveElement.classList.add('broadcasting-animation');
+                    }
+                    
+                    // CHANGE 2: Remove focus from button to prevent scroll jump
+                    this.blur();
+                });
+            });
+
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active'); 
+                });
+            });
+
+            // CHANGE 3: Logic for smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) { 
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            let offsetTop = targetElement.offsetTop;
+                            const tsBar = document.getElementById('toneSelector');
+                            if (tsBar && getComputedStyle(tsBar).position === 'sticky') { 
+                                offsetTop -= (tsBar.offsetHeight + 10); 
+                            }
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
