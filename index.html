@@ -57,21 +57,21 @@
         }
         
         /* Theme Variations */
-        [data-theme="personal"] { /* 🌱 */
+        [data-theme="me"] { /* 🌱 */
             --primary: #059669; 
             --primary-dark: #047857;
             --accent: #06b6d4;
             --surface-secondary: #f0fdf4;
         }
 
-        [data-theme="professional"] { /* 🛠️ */
+        [data-theme="job"] { /* 🛠️ */
             --primary: #2563eb; 
             --primary-dark: #1d4ed8;
             --accent: #f59e0b;
             --surface-secondary: #eff6ff;
         }
 
-        [data-theme="business"] { /* 🚀 */
+        [data-theme="company"] { /* 🚀 */
             --primary: #7c3aed; 
             --primary-dark: #6d28d9;
             --accent: #ec4899;
@@ -183,7 +183,7 @@
             font-weight: 500;
             transition: var(--transition), opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
             text-align: center;
-            min-width: 180px; 
+            min-width: 140px; 
             display: flex; 
             align-items: center;
             justify-content: center;
@@ -683,9 +683,21 @@
                 justify-content: center; 
             }
         }
+        
+        @media (max-width: 500px) {
+            .tone-options {
+                flex-wrap: nowrap;
+            }
+            .tone-btn {
+                min-width: 0;
+                flex-grow: 1;
+                padding: var(--space-2) var(--space-1);
+                font-size: 0.7rem; /* Slightly smaller font for tight spaces */
+            }
+        }
     </style>
 </head>
-<body data-theme="personal">
+<body data-theme="me">
     <!-- Tone Selector -->
     <div class="tone-selector" id="toneSelector">
         <div class="container">
@@ -695,14 +707,14 @@
                     <p>I help individuals, professionals, and businesses. Select your focus to see how.</p>
                 </div>
                 <div class="tone-options">
-                    <button class="tone-btn active" data-theme="personal">
-                        <span class="emoji">🌱</span> <span class="tone-btn-text">For My Personal Life</span>
+                    <button class="tone-btn active" data-theme="me">
+                        <span class="emoji">🌱</span> <span class="tone-btn-text">For Me</span>
                     </button>
-                    <button class="tone-btn" data-theme="professional">
-                        <span class="emoji">🛠️</span> <span class="tone-btn-text">For My Work</span>
+                    <button class="tone-btn" data-theme="job">
+                        <span class="emoji">🛠️</span> <span class="tone-btn-text">For My Job</span>
                     </button>
-                    <button class="tone-btn" data-theme="business">
-                        <span class="emoji">🚀</span> <span class="tone-btn-text">For My Business</span>
+                    <button class="tone-btn" data-theme="company">
+                        <span class="emoji">🚀</span> <span class="tone-btn-text">For My Company</span>
                     </button>
                 </div>
             </div>
@@ -819,7 +831,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Content variations for the three tones
             const toneContent = {
-                personal: { // 🌱 For My Personal Life
+                me: { // 🌱 For Me
                     headline: "AI for Your Everyday Life",
                     subheadline: "Curious how AI can help with personal projects, hobbies, or daily tasks? I'm your friendly guide to making it simple and fun.",
                     heroInfo1: "🌱 Simple, Fun Ideas",
@@ -839,7 +851,7 @@
                     ctaHeadline: "Ready to See What AI Can Do?",
                     ctaSubheadline: "Let's start with a simple, no-pressure conversation."
                 },
-                professional: { // 🛠️ For My Work
+                job: { // 🛠️ For My Job
                     headline: "Smarter Workflows with AI",
                     subheadline: "Your time is valuable. I help you integrate practical AI tools into your workflow to boost productivity and focus on what you do best.",
                     heroInfo1: "🛠️ Practical Workflow Solutions",
@@ -859,7 +871,7 @@
                     ctaHeadline: "Ready to Upgrade Your Workflow?",
                     ctaSubheadline: "Let's find a practical AI solution to save you time."
                 },
-                business: { // 🚀 For My Business
+                company: { // 🚀 For My Company
                     headline: "AI for Business Growth",
                     subheadline: "Leverage AI to solve operational challenges, improve efficiency, and create a significant competitive advantage for your business.",
                     heroInfo1: "🚀 Drive Business Growth",
@@ -934,7 +946,7 @@
             }
             
             // Set initial tone
-            applyTone('personal');
+            applyTone('me');
 
             toneButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
